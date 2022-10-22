@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.InputSystem;
 using UnityEngine;
 
 public class CarController : MonoBehaviour
@@ -17,7 +18,10 @@ public class CarController : MonoBehaviour
         public Axel axel;
         // Dust particle and others related directly to wheels could be stored here
     }
-
+    // Input variables
+    private DriveInputs _driveInputs;
+    private InputAction _movementAction;
+    private InputAction _brakeAction;
     // Acceleration Variables
     [SerializeField] private float _maxAcceleration;
     [SerializeField] private float _brakeAcceleration;
@@ -31,11 +35,23 @@ public class CarController : MonoBehaviour
     private float _steerInput;
     private Rigidbody _rb;
 
-      void Start()
+    void Awake()
     {
+        _driveInputs = new DriveInputs();
         _rb = GetComponent<Rigidbody>();
         _rb.centerOfMass = _centerOfMass;
+        _movementAction = _driveInputs.Player.Move;
+        _brakeAction = _driveInputs.Player.HandBrake;
+    }
 
+    private void OnEnable() {
+        _movementAction.Enable();
+        _brakeAction.Enable();
+    }
+
+    private void OnDisable() {
+        _movementAction.Disable();
+        _brakeAction.Disable();
     }
 
     void Update()
@@ -53,8 +69,8 @@ public class CarController : MonoBehaviour
 
     void GetInputs()
     {
-        _throttleInput = Input.GetAxis("Vertical");
-        _steerInput = Input.GetAxis("Horizontal");
+        _throttleInput = _movementAction.ReadValue<Vector2>().y;
+        _steerInput = _movementAction.ReadValue<Vector2>().x;
     }
 
     void Move()
@@ -79,7 +95,7 @@ public class CarController : MonoBehaviour
 
     void Brake()
     {
-        if (Input.GetKey(KeyCode.Space) || _throttleInput == 0)
+        if (_brakeAction.ReadValue<float>() > 0 || _throttleInput == 0)
         {
             foreach (var wheel in _wheels)
             {
@@ -93,8 +109,6 @@ public class CarController : MonoBehaviour
             {
                 wheel.collider.brakeTorque = 0;
             }
-
-
         }
     }
 
@@ -106,7 +120,7 @@ public class CarController : MonoBehaviour
             Vector3 pos;
             wheel.collider.GetWorldPose(out pos, out rot);
             wheel.model.transform.position = pos;
-            rot *= Quaternion.Euler(0, 90, 0);
+            rot *= Quaternion.Euler(0, 90, 0); /// this is to rotate wheels in correct direction, perhaps tyler can help with it.
             wheel.model.transform.rotation = rot;
         }
     }

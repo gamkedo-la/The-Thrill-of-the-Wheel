@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 
 // [RequireComponent(typeof(Animator))]
@@ -16,23 +17,27 @@ public class Gun : MonoBehaviour
     [SerializeField] private TrailRenderer _bulletTrail;
     [SerializeField] private float _shootDelay = .5f;
     [SerializeField] private LayerMask _mask;
+    // Input variables
+    private DriveInputs _driveInputs;
 
     private Animator _anim;
     private float _lastShootTime;
 
     private void Awake() {
         _anim = GetComponent<Animator>();
-
+        _driveInputs = new DriveInputs();
+        _driveInputs.Player.FireRegular.performed += Shoot;
     }
 
-    void Update() {
-        if(Input.GetButton("Fire1")) {
-            Debug.Log("attempt shoot");
-            Shoot();
-        }
+    private void OnEnable() {
+        _driveInputs.Player.FireRegular.Enable();
     }
 
-    private void Shoot()
+    private void OnDisable() {
+        _driveInputs.Player.FireRegular.Disable();
+    }
+
+    private void Shoot(InputAction.CallbackContext obj)
     {
         if(_lastShootTime + _shootDelay < Time.time) {
             RaycastHit hit;
