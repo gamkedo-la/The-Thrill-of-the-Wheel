@@ -1438,8 +1438,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _damage: 0
   _range: 1000
-  _hasSpread: 0
-  _spreadVarianceVector: {x: 0.1, y: 0.1, z: 0.1}
+  _hasSpread: 1
+  _spreadVarianceVector: {x: 0.05, y: 0.05, z: 0.05}
   _shootingSystem: {fileID: 0}
   _spawnPoint: {fileID: 0}
   _impactSystem: {fileID: 0}
@@ -1448,6 +1448,7 @@ MonoBehaviour:
   _mask:
     serializedVersion: 2
     m_Bits: 0
+  maxShootDistance: 200
 --- !u!95 &1684195340
 Animator:
   serializedVersion: 4

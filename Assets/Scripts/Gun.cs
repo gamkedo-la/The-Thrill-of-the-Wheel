@@ -17,6 +17,7 @@ public class Gun : MonoBehaviour
     [SerializeField] private TrailRenderer _bulletTrail;
     [SerializeField] private float _shootDelay = .5f;
     [SerializeField] private LayerMask _mask;
+    [SerializeField] private float maxShootDistance;
     // Input variables
     private DriveInputs _driveInputs;
 
@@ -44,13 +45,15 @@ public class Gun : MonoBehaviour
 
             Vector3 direction = GetDirection();
 
+            Vector3 endPoint = transform.position + (direction * maxShootDistance);
 
+            TrailRenderer trail = Instantiate(_bulletTrail, transform.position, Quaternion.identity);
+
+
+            StartCoroutine(SpawnTrail(trail, endPoint));
+            _lastShootTime = Time.time;
             if(Physics.Raycast(transform.position, direction, out hit, _range)) {
-                TrailRenderer trail = Instantiate(_bulletTrail, transform.position, Quaternion.identity);
-
-                StartCoroutine(SpawnTrail(trail, hit));
-
-                _lastShootTime = Time.time;
+                // Add damage logic here
                 // Debug.Log(hit.transform.name);
             }
         }
@@ -72,19 +75,17 @@ public class Gun : MonoBehaviour
         return direction;
     }
 
-    private IEnumerator SpawnTrail (TrailRenderer trail, RaycastHit hit) {
+    private IEnumerator SpawnTrail (TrailRenderer trail, Vector3 endpoint) {
         float time = 0;
         Vector3 startPosition = trail.transform.position;
 
-        while (time<1) {
-            trail.transform.position = Vector3.Lerp(startPosition, hit.point, time);
+        while (Vector3.Distance(trail.transform.position, endpoint) > 1) {
+            trail.transform.position = Vector3.Lerp(startPosition, endpoint, time);
             time += Time.deltaTime / trail.time;
             yield return null;
         }
 
         // _anim.SetBool("isShooting", false);
-
-        trail.transform.position = hit.point;
         // Instantiate(_impactSystem, hit.point, Quaternion.LookRotation(hit.normal));
 
         Destroy(trail.gameObject, trail.time);
