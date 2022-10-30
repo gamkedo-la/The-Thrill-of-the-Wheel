@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine;
@@ -22,6 +21,7 @@ public class CarController : MonoBehaviour
     private DriveInputs _driveInputs;
     private InputAction _movementAction;
     private InputAction _brakeAction;
+    private InputAction _switchWeapon;
     // Acceleration Variables
     [SerializeField] private float _maxAcceleration;
     [SerializeField] private float _brakeAcceleration;
@@ -42,16 +42,19 @@ public class CarController : MonoBehaviour
         _rb.centerOfMass = _centerOfMass;
         _movementAction = _driveInputs.Player.Move;
         _brakeAction = _driveInputs.Player.HandBrake;
+        _switchWeapon = _driveInputs.Player.SwitchWeapon;
     }
 
     private void OnEnable() {
         _movementAction.Enable();
         _brakeAction.Enable();
+        _switchWeapon.Enable();
     }
 
     private void OnDisable() {
         _movementAction.Disable();
         _brakeAction.Disable();
+        _switchWeapon.Disable();
     }
 
     void Update()
@@ -65,6 +68,7 @@ public class CarController : MonoBehaviour
         Move();
         Steer();
         Brake();
+        SwitchWeapon();
     }
 
     void GetInputs()
@@ -123,6 +127,12 @@ public class CarController : MonoBehaviour
             rot *= Quaternion.Euler(0, 90, 0); /// this is to rotate wheels in correct direction, perhaps tyler can help with it.
             wheel.model.transform.rotation = rot;
         }
+    }
+
+    void SwitchWeapon()
+    {
+        if (!_switchWeapon.triggered) return;
+        Debug.Log("Switched Weapon");
     }
 
 }

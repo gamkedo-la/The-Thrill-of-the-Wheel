@@ -62,6 +62,15 @@ public partial class @DriveInputs : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SwitchWeapon"",
+                    ""type"": ""Button"",
+                    ""id"": ""6ef81570-0b97-4102-bad8-d9a49f466890"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -304,6 +313,17 @@ public partial class @DriveInputs : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Hand Brake"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""df898515-d1cc-4735-bf11-27edf87dd4a3"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwitchWeapon"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -895,6 +915,7 @@ public partial class @DriveInputs : IInputActionCollection2, IDisposable
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
         m_Player_FireRegular = m_Player.FindAction("FireRegular", throwIfNotFound: true);
         m_Player_HandBrake = m_Player.FindAction("Hand Brake", throwIfNotFound: true);
+        m_Player_SwitchWeapon = m_Player.FindAction("SwitchWeapon", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -970,6 +991,7 @@ public partial class @DriveInputs : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Look;
     private readonly InputAction m_Player_FireRegular;
     private readonly InputAction m_Player_HandBrake;
+    private readonly InputAction m_Player_SwitchWeapon;
     public struct PlayerActions
     {
         private @DriveInputs m_Wrapper;
@@ -978,6 +1000,7 @@ public partial class @DriveInputs : IInputActionCollection2, IDisposable
         public InputAction @Look => m_Wrapper.m_Player_Look;
         public InputAction @FireRegular => m_Wrapper.m_Player_FireRegular;
         public InputAction @HandBrake => m_Wrapper.m_Player_HandBrake;
+        public InputAction @SwitchWeapon => m_Wrapper.m_Player_SwitchWeapon;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -999,6 +1022,9 @@ public partial class @DriveInputs : IInputActionCollection2, IDisposable
                 @HandBrake.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHandBrake;
                 @HandBrake.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHandBrake;
                 @HandBrake.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHandBrake;
+                @SwitchWeapon.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwitchWeapon;
+                @SwitchWeapon.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwitchWeapon;
+                @SwitchWeapon.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwitchWeapon;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1015,6 +1041,9 @@ public partial class @DriveInputs : IInputActionCollection2, IDisposable
                 @HandBrake.started += instance.OnHandBrake;
                 @HandBrake.performed += instance.OnHandBrake;
                 @HandBrake.canceled += instance.OnHandBrake;
+                @SwitchWeapon.started += instance.OnSwitchWeapon;
+                @SwitchWeapon.performed += instance.OnSwitchWeapon;
+                @SwitchWeapon.canceled += instance.OnSwitchWeapon;
             }
         }
     }
@@ -1175,6 +1204,7 @@ public partial class @DriveInputs : IInputActionCollection2, IDisposable
         void OnLook(InputAction.CallbackContext context);
         void OnFireRegular(InputAction.CallbackContext context);
         void OnHandBrake(InputAction.CallbackContext context);
+        void OnSwitchWeapon(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
