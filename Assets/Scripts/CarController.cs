@@ -34,6 +34,7 @@ public class CarController : MonoBehaviour
     private float _throttleInput;
     private float _steerInput;
     private Rigidbody _rb;
+    private WeaponInventory _weaponInventory;
 
     void Awake()
     {
@@ -43,6 +44,8 @@ public class CarController : MonoBehaviour
         _movementAction = _driveInputs.Player.Move;
         _brakeAction = _driveInputs.Player.HandBrake;
         _switchWeapon = _driveInputs.Player.SwitchWeapon;
+
+        _weaponInventory = GetComponent<WeaponInventory>();
     }
 
     private void OnEnable() {
@@ -132,7 +135,7 @@ public class CarController : MonoBehaviour
     void SwitchWeapon()
     {
         if (!_switchWeapon.triggered) return;
-        Debug.Log("Switched Weapon");
+        _weaponInventory.SwitchWeapon();
     }
 
 }
