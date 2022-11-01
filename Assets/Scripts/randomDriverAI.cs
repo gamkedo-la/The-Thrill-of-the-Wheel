@@ -17,6 +17,8 @@ public class randomDriverAI : MonoBehaviour
     private float _throttleInput;
     private float _steerInput;
     private float _brakeInput;
+    // steering wheel/pedal change percent per second
+    private float _lerpSpeed = 0.5f; 
     //private float _fireInput;
     ///////////////////////////////////////////////////////////
     // this is the only function that differs significantly
@@ -57,28 +59,28 @@ public class randomDriverAI : MonoBehaviour
         if (Mathf.Abs(relativePos.x) < 0.1f)
         {
             //Debug.Log("STRAIGHT");
-            _steerInput = 0; // fix,me: lerp
+            _steerInput = Mathf.Lerp(_steerInput,0,_lerpSpeed*Time.deltaTime);
         }
         else if (relativePos.x < 0)
         {
             //Debug.Log("LEFT");
-            _steerInput = -1; // fix,me: lerp
+            _steerInput = Mathf.Lerp(_steerInput,-1,_lerpSpeed*Time.deltaTime);
         }
         else if (relativePos.x > 0)
         {
             //Debug.Log("RIGHT");
-            _steerInput = 1; // fix,me: lerp
+            _steerInput = Mathf.Lerp(_steerInput,1,_lerpSpeed*Time.deltaTime);
         }
 
         if (relativePos.z >= 0)
         {
             //Debug.Log("AHEAD");
-            _throttleInput = 1; // fixme: lerp
+            _throttleInput = Mathf.Lerp(_throttleInput,1,_lerpSpeed*Time.deltaTime);
         } 
         else
         {
             //Debug.Log("BEHIND");
-            _throttleInput = -1; // fixme: lerp
+            _throttleInput = Mathf.Lerp(_throttleInput,-1,_lerpSpeed*Time.deltaTime);
         }
     }
     ///////////////////////////////////////////////////////////
