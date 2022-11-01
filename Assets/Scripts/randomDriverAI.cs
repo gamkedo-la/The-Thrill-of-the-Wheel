@@ -9,6 +9,91 @@ using UnityEngine;
 // and instead emit "AI Inputs"
 public class randomDriverAI : MonoBehaviour
 {
+
+    ///////////////////////////////////////////////////////////
+    // evil enemy car ai begins
+    ///////////////////////////////////////////////////////////
+    public Transform AI_target;
+    private float _throttleInput;
+    private float _steerInput;
+    private float _brakeInput;
+    //private float _fireInput;
+    ///////////////////////////////////////////////////////////
+    // this is the only function that differs significantly
+    // from CarController.cs - so we may want to separate
+    // these two components and have this AI only send input
+    // state to the same car controller as used by the player
+    // so I don't have to copy+paste future enhancements
+    ///////////////////////////////////////////////////////////
+    void evil_enemy_car_AI()
+    {
+        // forward and reverse over time like a fool
+        _throttleInput = Mathf.Sin(Time.time*2);
+        
+        // wobble back and forth over time like a fool
+        _steerInput = Mathf.Sin(Time.time*3.11f);
+
+        // never uses the brake
+        _brakeInput = 0;
+
+        // unarmed (so far!)
+        //_fireInput = 0;
+
+        turn_towards_target(AI_target);
+    }
+
+    // hmm there are a lot of advanced steering behaviour AI tutorials online
+    // but I don't want to write a thousand like industrial strength version
+    void turn_towards_target(Transform where)
+    {
+        // this changes target to coordinates relative to our view
+        Vector3 relativePos = this.transform.InverseTransformPoint(where.position);
+
+        if (Mathf.Abs(relativePos.x) < 0.1f)
+        {
+            Debug.Log("STRAIGHT");
+        }
+        else if (relativePos.x < 0)
+        {
+            Debug.Log("LEFT");
+        }
+        else if (relativePos.x > 0)
+        {
+            Debug.Log("RIGHT");
+        }
+
+        if (relativePos.z >= 0)
+        {
+            Debug.Log("AHEAD");
+        } 
+        else
+        {
+            Debug.Log("BEHIND");
+        }
+    }
+    ///////////////////////////////////////////////////////////
+    // evil enemy car ai ends
+    ///////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public enum Axel {
         Front,
         Rear,
@@ -30,11 +115,6 @@ public class randomDriverAI : MonoBehaviour
     private Vector3 _centerOfMass;
     private Rigidbody _rb;
 
-    // the AI sets these
-    private float _throttleInput;
-    private float _steerInput;
-    private float _brakeInput;
-
     void Awake()
     {
         _rb = GetComponent<Rigidbody>();
@@ -42,11 +122,9 @@ public class randomDriverAI : MonoBehaviour
     }
 
     private void OnEnable() {
-        // maybe unpause the ai?
     }
 
     private void OnDisable() {
-        // maybe pause the ai?
     }
 
     void Update()
@@ -62,12 +140,9 @@ public class randomDriverAI : MonoBehaviour
         Brake();
     }
 
-    // this is the entire AI lol so simple and silly
     void GetInputs()
     {
-        _throttleInput = Mathf.Sin(Time.time*2);
-        _steerInput = Mathf.Sin(Time.time*3.11f);
-        _brakeInput = 0;
+        evil_enemy_car_AI(); // the only change is here
     }
 
     void Move()
