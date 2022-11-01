@@ -27,6 +27,9 @@ public class randomDriverAI : MonoBehaviour
     ///////////////////////////////////////////////////////////
     void evil_enemy_car_AI()
     {
+        /*
+        // works great!
+
         // forward and reverse over time like a fool
         _throttleInput = Mathf.Sin(Time.time*2);
         
@@ -38,6 +41,8 @@ public class randomDriverAI : MonoBehaviour
 
         // unarmed (so far!)
         //_fireInput = 0;
+
+        */
 
         turn_towards_target(AI_target);
     }
@@ -51,24 +56,29 @@ public class randomDriverAI : MonoBehaviour
 
         if (Mathf.Abs(relativePos.x) < 0.1f)
         {
-            Debug.Log("STRAIGHT");
+            //Debug.Log("STRAIGHT");
+            _steerInput = 0; // fix,me: lerp
         }
         else if (relativePos.x < 0)
         {
-            Debug.Log("LEFT");
+            //Debug.Log("LEFT");
+            _steerInput = -1; // fix,me: lerp
         }
         else if (relativePos.x > 0)
         {
-            Debug.Log("RIGHT");
+            //Debug.Log("RIGHT");
+            _steerInput = 1; // fix,me: lerp
         }
 
         if (relativePos.z >= 0)
         {
-            Debug.Log("AHEAD");
+            //Debug.Log("AHEAD");
+            _throttleInput = 1; // fixme: lerp
         } 
         else
         {
-            Debug.Log("BEHIND");
+            //Debug.Log("BEHIND");
+            _throttleInput = -1; // fixme: lerp
         }
     }
     ///////////////////////////////////////////////////////////
