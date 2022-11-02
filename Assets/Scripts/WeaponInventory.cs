@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,6 +8,8 @@ public class WeaponInventory : MonoBehaviour
 
     private int equipedWeaponIdx = 0;
     [SerializeField] private GameObject equipedWeapon = null;
+
+    public event Action<GameObject> onSwitchWeapon;
     
     // Start is called before the first frame update
     void Start()
@@ -18,7 +21,6 @@ public class WeaponInventory : MonoBehaviour
     {
         if (equipedWeaponIdx > 0)
         {
-            Debug.Log("Unequip " + equipedWeapon.name);
             Destroy(equipedWeapon);
             equipedWeapon = null;
         }
@@ -31,7 +33,8 @@ public class WeaponInventory : MonoBehaviour
         else
         {
             equipedWeapon = Instantiate(availableWeaponsPrefab[equipedWeaponIdx], transform);
-            Debug.Log("Equip " + equipedWeapon.name);
         }
+
+        onSwitchWeapon(equipedWeapon);
     }
 }
