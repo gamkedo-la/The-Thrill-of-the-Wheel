@@ -5,13 +5,15 @@ using UnityEngine;
 
 public class CarController : MonoBehaviour
 {
-    public enum Axel {
+    public enum Axel
+    {
         Front,
         Rear,
     };
 
     [Serializable]
-    private struct Wheel {
+    private struct Wheel
+    {
         public GameObject model;
         public WheelCollider collider;
         public Axel axel;
@@ -36,6 +38,14 @@ public class CarController : MonoBehaviour
     private Rigidbody _rb;
     private WeaponInventory _weaponInventory;
 
+    // Boost Variables
+    bool _boost = false;
+    [SerializeField] float _boostTime = 2f;
+    [SerializeField] float _boostMultiplier = 2f;
+    float _currentBoostTimer = 0f;
+
+    public bool IsBoosted { get => _boost; }
+
     void Awake()
     {
         _driveInputs = new DriveInputs();
@@ -48,13 +58,15 @@ public class CarController : MonoBehaviour
         _weaponInventory = GetComponent<WeaponInventory>();
     }
 
-    private void OnEnable() {
+    private void OnEnable()
+    {
         _movementAction.Enable();
         _brakeAction.Enable();
         _switchWeapon.Enable();
     }
 
-    private void OnDisable() {
+    private void OnDisable()
+    {
         _movementAction.Disable();
         _brakeAction.Disable();
         _switchWeapon.Disable();
@@ -64,6 +76,14 @@ public class CarController : MonoBehaviour
     {
         GetInputs();
         AnimateWheels();
+    }
+
+    private void FixedUpdate() {
+        if (_boost)
+        {
+            CheckBoostTime();
+            ApplyBoostForce();
+        }
     }
 
     void LateUpdate()
@@ -82,7 +102,7 @@ public class CarController : MonoBehaviour
 
     void Move()
     {
-        foreach(var wheel in _wheels)
+        foreach (var wheel in _wheels)
         {
             wheel.collider.motorTorque = _throttleInput * 2200 * _maxAcceleration * Time.deltaTime;
         }
@@ -90,7 +110,7 @@ public class CarController : MonoBehaviour
 
     void Steer()
     {
-        foreach(var wheel in _wheels)
+        foreach (var wheel in _wheels)
         {
             if (wheel.axel == Axel.Front)
             {
@@ -121,7 +141,7 @@ public class CarController : MonoBehaviour
 
     void AnimateWheels()
     {
-        foreach(var wheel in _wheels)
+        foreach (var wheel in _wheels)
         {
             Quaternion rot;
             Vector3 pos;
@@ -137,5 +157,26 @@ public class CarController : MonoBehaviour
         if (!_switchWeapon.triggered) return;
         _weaponInventory.SwitchWeapon();
     }
+
+    void CheckBoostTime()
+    {
+        _currentBoostTimer += Time.deltaTime;
+
+        if(_currentBoostTimer > _boostTime){
+            _boost = false;
+            _currentBoostTimer = 0;
+        }
+    }
+
+    public void SetBoost(){
+        _boost = true;
+        _currentBoostTimer = 0;
+    }
+
+    private void ApplyBoostForce()
+    {
+        _rb.AddForce(_rb.velocity.normalized * _boostMultiplier, ForceMode.Impulse);
+    }
+
 
 }

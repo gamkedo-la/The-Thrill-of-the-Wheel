@@ -10,6 +10,7 @@ public class CameraFollow : MonoBehaviour
     [SerializeField] private float translateSpeed;
     [SerializeField] private float rotationSpeed;
 
+    public float TranslateSpeed { get => translateSpeed; set => translateSpeed = value; }
 
     private void FixedUpdate() {
         HandleTranslation();
