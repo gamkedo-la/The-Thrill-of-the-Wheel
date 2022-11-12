@@ -14,6 +14,7 @@ public class randomDriverAI : MonoBehaviour
     // evil enemy car ai begins
     ///////////////////////////////////////////////////////////
     public Transform AI_target;
+    public float slowDownWhenThisClose = 16f;
     private float _throttleInput;
     private float _steerInput;
     private float _brakeInput;
@@ -50,11 +51,18 @@ public class randomDriverAI : MonoBehaviour
     }
 
     // hmm there are a lot of advanced steering behaviour AI tutorials online
-    // but I don't want to write a thousand like industrial strength version
+    // but I don't want to write a thousand line industrial strength version
     void turn_towards_target(Transform where)
     {
         // this changes target to coordinates relative to our view
-        Vector3 relativePos = this.transform.InverseTransformPoint(where.position);
+        Vector3 relativePos = transform.InverseTransformPoint(where.position);
+        float targetDistance = Vector3.Distance(where.position, transform.position);
+        float throttleAmount = 1f;
+        _brakeInput = 0f;
+        if (targetDistance < slowDownWhenThisClose) { // getting close to target:
+            throttleAmount = targetDistance / slowDownWhenThisClose; // ease up on the gas
+            _brakeInput = 1f - (targetDistance / slowDownWhenThisClose); // apply more brakes as we approach target
+        }
 
         if (Mathf.Abs(relativePos.x) < 0.1f)
         {
@@ -74,13 +82,13 @@ public class randomDriverAI : MonoBehaviour
 
         if (relativePos.z >= 0)
         {
-            //Debug.Log("AHEAD");
-            _throttleInput = Mathf.Lerp(_throttleInput,1,_lerpSpeed*Time.deltaTime);
+            //Debug.Log(targetDistance.ToString("F1") + " UNITS AHEAD: throttle = " + throttleAmount.ToString("F1") + " brake = " + _brakeInput.ToString("F1"));
+            _throttleInput = Mathf.Lerp(_throttleInput,throttleAmount,_lerpSpeed*Time.deltaTime);
         } 
         else
         {
-            //Debug.Log("BEHIND");
-            _throttleInput = Mathf.Lerp(_throttleInput,-1,_lerpSpeed*Time.deltaTime);
+            //Debug.Log(targetDistance.ToString("F1") + " UNITS BEHIND: throttle = " + throttleAmount.ToString("F1") + " brake = " + _brakeInput.ToString("F1"));
+            _throttleInput = Mathf.Lerp(_throttleInput,-throttleAmount,_lerpSpeed*Time.deltaTime);
         }
     }
     ///////////////////////////////////////////////////////////
