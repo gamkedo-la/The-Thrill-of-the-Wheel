@@ -147,7 +147,7 @@ public class CarController : MonoBehaviour
             Vector3 pos;
             wheel.collider.GetWorldPose(out pos, out rot);
             wheel.model.transform.position = pos;
-            rot *= Quaternion.Euler(0, 90, 0); /// this is to rotate wheels in correct direction, perhaps tyler can help with it.
+            // rot *= Quaternion.Euler(0, 0, 0); /// this is to rotate wheels in correct direction, perhaps tyler can help with it.
             wheel.model.transform.rotation = rot;
         }
     }
