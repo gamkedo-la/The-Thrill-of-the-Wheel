@@ -19,6 +19,12 @@ public class CarController : MonoBehaviour
         public Axel axel;
         // Dust particle and others related directly to wheels could be stored here
     }
+
+    [SerializeField]
+    [NonReorderable]
+    private List<Wheel> _wheels;
+    
+
     // Input variables
     private DriveInputs _driveInputs;
     private InputAction _movementAction;
@@ -32,7 +38,7 @@ public class CarController : MonoBehaviour
     [SerializeField] private float _maxSteerAngle;
     // 
     private Vector3 _centerOfMass;
-    [SerializeField] private List<Wheel> _wheels;
+
     private float _throttleInput;
     private float _steerInput;
     private Rigidbody _rb;
