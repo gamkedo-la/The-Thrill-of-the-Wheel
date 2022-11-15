@@ -732,6 +732,7 @@ GameObject:
   - component: {fileID: 6403644427213507259}
   - component: {fileID: 6403644427213507258}
   - component: {fileID: 6403644427213507256}
+  - component: {fileID: 5963927027596291229}
   m_Layer: 0
   m_Name: AgentCar
   m_TagString: Untagged
@@ -796,10 +797,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46cd6658e6e3b0c4f9e07bb154b88a65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxAcceleration: 50
-  _brakeAcceleration: 300
-  _turnSensitivity: 0.8
-  _maxSteerAngle: 25
   _wheels:
   - model: {fileID: 3197234874673609724}
     collider: {fileID: 4621505406073270754}
@@ -813,8 +810,27 @@ MonoBehaviour:
   - model: {fileID: 5294767732099139612}
     collider: {fileID: 4621505405737554475}
     axel: 1
+  _maxAcceleration: 50
+  _brakeAcceleration: 300
+  _turnSensitivity: 0.8
+  _maxSteerAngle: 25
   _boostTime: 2
   _boostMultiplier: 100
+--- !u!114 &5963927027596291229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6403644427213507237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ce40e2ba8c81fb40a0a698ef7432267, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  availableWeaponsPrefab:
+  - {fileID: 1127116340744003378, guid: 6b00959a455d5b74f9050de2fdb8e2cb, type: 3}
+  equipedWeapon: {fileID: 0}
 --- !u!1 &6687513698925204380
 GameObject:
   m_ObjectHideFlags: 0
