@@ -12,6 +12,11 @@ public class MagmaSpawner : MonoBehaviour
     private void OnEnable() {
         InvokeRepeating("ShootMagma", 0f, _spawnTimer);
     }
+
+    private void OnDisable() {
+        CancelInvoke();
+    }
+
     private void ShootMagma() {
         GameObject projectile = Instantiate(_magmaProjectilePrefab, transform.position, Quaternion.identity);
         float randomX = Random.Range(-1, 1) * _horizontalForce;
