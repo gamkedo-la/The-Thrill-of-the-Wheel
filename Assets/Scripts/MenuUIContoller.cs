@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class MenuUIContoller : MonoBehaviour
 {
@@ -9,9 +10,33 @@ public class MenuUIContoller : MonoBehaviour
 
     private Canvas canvas;
 
+    private DriveInputs _driveInputs;
+    private InputAction _menuAction;
+
+    private void Awake()
+    {
+        _driveInputs = new DriveInputs();
+        _menuAction = _driveInputs.Player.Menu;
+    }
+
     private void Start()
     {
         canvas = gameObject.GetComponent<Canvas>();
+    }
+
+    private void Update()
+    {
+        if (_menuAction.triggered) ShowOrHideMenu();
+    }
+
+    private void OnEnable()
+    {
+        _menuAction.Enable();
+    }
+
+    private void OnDisable()
+    {
+        _menuAction.Disable();
     }
 
     private void ShowOrHideMenu()
