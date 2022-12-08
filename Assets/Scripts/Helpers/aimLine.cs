@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class aimLine : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public LineRenderer myLineRenderer; 
+    public Transform startHere;
+    public Transform endHere;
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if (!myLineRenderer) return;
+        myLineRenderer.SetPosition(0, startHere.position);
+        myLineRenderer.SetPosition(1, endHere.position);        
     }
 }
