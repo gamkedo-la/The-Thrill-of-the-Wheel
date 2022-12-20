@@ -259,7 +259,7 @@ WheelCollider:
   m_SuspensionDistance: 0.3
   m_ForceAppPointDistance: 0
   m_Mass: 20
-  m_WheelDampingRate: 10
+  m_WheelDampingRate: 12
   m_ForwardFriction:
     m_ExtremumSlip: 0.4
     m_ExtremumValue: 1
@@ -9206,7 +9206,7 @@ WheelCollider:
   m_SuspensionDistance: 0.3
   m_ForceAppPointDistance: 0
   m_Mass: 20
-  m_WheelDampingRate: 10
+  m_WheelDampingRate: 12
   m_ForwardFriction:
     m_ExtremumSlip: 0.4
     m_ExtremumValue: 1
@@ -9425,7 +9425,7 @@ WheelCollider:
   m_SuspensionDistance: 0.3
   m_ForceAppPointDistance: 0
   m_Mass: 20
-  m_WheelDampingRate: 10
+  m_WheelDampingRate: 12
   m_ForwardFriction:
     m_ExtremumSlip: 0.4
     m_ExtremumValue: 1
@@ -9487,7 +9487,7 @@ WheelCollider:
   m_SuspensionDistance: 0.3
   m_ForceAppPointDistance: 0
   m_Mass: 20
-  m_WheelDampingRate: 10
+  m_WheelDampingRate: 12
   m_ForwardFriction:
     m_ExtremumSlip: 0.4
     m_ExtremumValue: 1
@@ -11727,9 +11727,9 @@ MonoBehaviour:
     collider: {fileID: 1749109247}
     axel: 1
   _maxAcceleration: 18000
-  _brakeAcceleration: 0
-  _turnSensitivity: 0
-  _maxSteerAngle: 0
+  _brakeAcceleration: 45000
+  _turnSensitivity: 10
+  _maxSteerAngle: 25
   _boostTime: 2
   _boostMultiplier: 2
 --- !u!4 &2115930574955690307

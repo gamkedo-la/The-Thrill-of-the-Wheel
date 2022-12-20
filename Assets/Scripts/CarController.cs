@@ -92,7 +92,7 @@ public class CarController : MonoBehaviour
             ApplyBoostForce();
         }
         Move();
-        // Steer();
+        Steer();
         Brake();
     }
 
@@ -120,12 +120,12 @@ public class CarController : MonoBehaviour
 
     void Steer()
     {
-        foreach (var wheel in _wheels)
+        foreach (Wheel wheel in _wheels)
         {
             if (wheel.axel == Axel.Front)
             {
-                var _steerAngle = _steerInput * _turnSensitivity * _maxSteerAngle;
-                wheel.collider.steerAngle = Mathf.Lerp(wheel.collider.steerAngle, _steerAngle, 0.6f);
+                float _steerAngle = _steerInput * _maxSteerAngle;
+                wheel.collider.steerAngle = _steerAngle;
             }
         }
     }
