@@ -41,6 +41,7 @@ public class CarController : MonoBehaviour
 
     private float _throttleInput;
     private float _steerInput;
+    private float _brakeInput;
     private Rigidbody _rb;
     private WeaponInventory _weaponInventory;
 
@@ -80,23 +81,23 @@ public class CarController : MonoBehaviour
 
     void Update()
     {
-        GetInputs();
-        AnimateWheels();
+        // AnimateWheels();
     }
 
     private void FixedUpdate() {
+        GetInputs();
         if (_boost)
         {
             CheckBoostTime();
             ApplyBoostForce();
         }
+        Move();
+        // Steer();
+        Brake();
     }
 
     void LateUpdate()
     {
-        Move();
-        Steer();
-        Brake();
         SwitchWeapon();
     }
 
@@ -104,13 +105,16 @@ public class CarController : MonoBehaviour
     {
         _throttleInput = _movementAction.ReadValue<Vector2>().y;
         _steerInput = _movementAction.ReadValue<Vector2>().x;
+        _brakeInput = _brakeAction.ReadValue<float>();
     }
 
     void Move()
     {
-        foreach (var wheel in _wheels)
-        {
-            wheel.collider.motorTorque = _throttleInput * 2200 * _maxAcceleration * Time.deltaTime;
+        if(_brakeInput == 0) {
+            foreach (var wheel in _wheels)
+            {
+                wheel.collider.motorTorque = _throttleInput * _maxAcceleration * Time.deltaTime;
+            }
         }
     }
 
@@ -128,19 +132,11 @@ public class CarController : MonoBehaviour
 
     void Brake()
     {
-        if (_brakeAction.ReadValue<float>() > 0 || _throttleInput == 0)
-        {
+        if(_throttleInput == 0) {
             foreach (var wheel in _wheels)
             {
-                wheel.collider.brakeTorque = 300 * _brakeAcceleration * Time.deltaTime;
-            }
-
-        }
-        else
-        {
-            foreach (var wheel in _wheels)
-            {
-                wheel.collider.brakeTorque = 0;
+                wheel.collider.motorTorque = 0;
+                wheel.collider.brakeTorque = _brakeInput * _brakeAcceleration * Time.deltaTime;
             }
         }
     }

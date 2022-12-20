@@ -14,7 +14,6 @@ public class VolcanoIgnition : MonoBehaviour
 
     void SwitchStatus() {
         _isIgnited = !_isIgnited;
-        Debug.Log(_isIgnited);
         _ignitionElements.SetActive(_isIgnited);
     }
 }
