@@ -114,7 +114,9 @@ public class CarController : MonoBehaviour
         if(_brakeInput == 0) {
             foreach (var wheel in _wheels)
             {
-                wheel.collider.motorTorque = _throttleInput * _maxAcceleration * Time.deltaTime;
+                if(wheel.collider) {
+                    wheel.collider.motorTorque = _throttleInput * _maxAcceleration * Time.deltaTime;
+                }
             }
         }
     }
@@ -123,7 +125,7 @@ public class CarController : MonoBehaviour
     {
         foreach (Wheel wheel in _wheels)
         {
-            if (wheel.axel == Axel.Front)
+            if (wheel.axel == Axel.Front && wheel.collider)
             {
                 float _steerAngle = _steerInput * _maxSteerAngle;
                 wheel.collider.steerAngle = _steerAngle;
@@ -136,8 +138,10 @@ public class CarController : MonoBehaviour
         if(_throttleInput == 0) {
             foreach (var wheel in _wheels)
             {
-                wheel.collider.motorTorque = 0;
-                wheel.collider.brakeTorque = _brakeInput * _brakeAcceleration * Time.deltaTime;
+                if (wheel.collider) {
+                    wheel.collider.motorTorque = 0;
+                    wheel.collider.brakeTorque = _brakeInput * _brakeAcceleration * Time.deltaTime;
+                }
             }
         }
     }
