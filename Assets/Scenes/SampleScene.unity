@@ -11714,22 +11714,41 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _wheels:
-  - model: {fileID: 0}
+  - model: {fileID: 8329948250755370463}
     collider: {fileID: 1750358340}
     axel: 0
-  - model: {fileID: 0}
+  - model: {fileID: 8981870496459554810}
     collider: {fileID: 1697462881}
     axel: 0
-  - model: {fileID: 0}
+  - model: {fileID: 9102636138755980785}
     collider: {fileID: 64212501}
     axel: 1
-  - model: {fileID: 0}
+  - model: {fileID: 5856857128261219526}
     collider: {fileID: 1749109247}
     axel: 1
-  _maxAcceleration: 18000
+  - model: {fileID: 9033881108463588914}
+    collider: {fileID: 0}
+    axel: 1
+  - model: {fileID: 6885828354031579427}
+    collider: {fileID: 0}
+    axel: 1
+  - model: {fileID: 6667068367285913840}
+    collider: {fileID: 0}
+    axel: 1
+  - model: {fileID: 2788693155602060828}
+    collider: {fileID: 0}
+    axel: 1
+  - model: {fileID: 2355389734400002857}
+    collider: {fileID: 0}
+    axel: 1
+  - model: {fileID: 3896477271364414451}
+    collider: {fileID: 0}
+    axel: 1
+  _maxAcceleration: 25000
   _brakeAcceleration: 45000
   _turnSensitivity: 10
   _maxSteerAngle: 25
+  _onlyRotate: 1
   _boostTime: 2
   _boostMultiplier: 2
 --- !u!4 &2115930574955690307
@@ -13929,6 +13948,7 @@ MonoBehaviour:
   _brakeAcceleration: 400
   _turnSensitivity: 1
   _maxSteerAngle: 30
+  _onlyRotate: 0
   _boostTime: 2
   _boostMultiplier: 100
 --- !u!65 &4740428766924530453

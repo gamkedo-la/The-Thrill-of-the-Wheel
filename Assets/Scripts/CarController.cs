@@ -36,7 +36,8 @@ public class CarController : MonoBehaviour
     // Steer Variables
     [SerializeField] private float _turnSensitivity;
     [SerializeField] private float _maxSteerAngle;
-    // 
+    // Animation Variables
+    [SerializeField] private bool _onlyRotate;
     private Vector3 _centerOfMass;
 
     private float _throttleInput;
@@ -81,7 +82,7 @@ public class CarController : MonoBehaviour
 
     void Update()
     {
-        // AnimateWheels();
+        AnimateWheels();
     }
 
     private void FixedUpdate() {
@@ -147,10 +148,16 @@ public class CarController : MonoBehaviour
         {
             Quaternion rot;
             Vector3 pos;
-            wheel.collider.GetWorldPose(out pos, out rot);
-            wheel.model.transform.position = pos;
-            // rot *= Quaternion.Euler(0, 0, 0); /// this is to rotate wheels in correct direction, perhaps tyler can help with it.
-            wheel.model.transform.rotation = rot;
+            if (_onlyRotate) {
+                _wheels[3].collider.GetWorldPose(out pos, out rot); // the third wheel will always be one of the rear ones that only rotates in the front/back axis
+                wheel.model.transform.rotation = rot;
+            } else {
+                wheel.collider.GetWorldPose(out pos, out rot);
+                wheel.model.transform.position = pos;
+                // rot *= Quaternion.Euler(0, 0, 0); /// this is to rotate wheels in correct direction, perhaps tyler can help with it.
+                wheel.model.transform.rotation = rot;
+            }
+            
         }
     }
 
