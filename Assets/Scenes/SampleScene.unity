@@ -11723,7 +11723,6 @@ GameObject:
   - component: {fileID: 2098632231209722648}
   - component: {fileID: 2098632231209722649}
   - component: {fileID: 2098632231209722650}
-  - component: {fileID: 2098632231209722651}
   m_Layer: 0
   m_Name: Tank Boat PJ
   m_TagString: Untagged
@@ -11810,31 +11809,6 @@ MonoBehaviour:
   _onlyRotate: 1
   _boostTime: 2
   _boostMultiplier: 2
---- !u!114 &2098632231209722651
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2098632231209722647}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 928875a287c9db4469d6c10f5e1f7025, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _damage: 0
-  _range: 10
-  _hasSpread: 0
-  _spreadVarianceVector: {x: 0.1, y: 0.1, z: 0.1}
-  _shootingSystem: {fileID: 0}
-  _spawnPoint: {fileID: 496521011}
-  _impactSystem: {fileID: 0}
-  _bulletTrail: {fileID: 4351913836813133364, guid: c8de5281b7a210f4982510d5fbd56938, type: 3}
-  _shootDelay: 0.5
-  _mask:
-    serializedVersion: 2
-    m_Bits: 0
-  maxShootDistance: 20
 --- !u!4 &2115930574955690307
 Transform:
   m_ObjectHideFlags: 0
