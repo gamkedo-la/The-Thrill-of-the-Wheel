@@ -168,7 +168,7 @@ public class CarController : MonoBehaviour
     void SwitchWeapon()
     {
         if (!_switchWeapon.triggered) return;
-        _weaponInventory.SwitchWeapon();
+        // _weaponInventory.SwitchWeapon();
     }
 
     void CheckBoostTime()

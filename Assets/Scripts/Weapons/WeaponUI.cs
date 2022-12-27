@@ -6,20 +6,20 @@ public class WeaponUI : MonoBehaviour
 
     private void Start()
     {
-        FindObjectOfType<WeaponInventory>().onSwitchWeapon += SwitchWeaponTo;
+        // FindObjectOfType<WeaponInventory>().onSwitchWeapon += SwitchWeaponTo;
     }
 
-    public void SwitchWeaponTo(GameObject weapon)
+    public void SwitchWeaponTo()
     {
-        if (weapon == null)
-        {
-            DeactivateCurrentWeaponVisual();
-        }
-        else
-        {
-            bool weaponVisualsAlreadyExists = ActivateWeaponVisualIfAlreadyExists(weapon);
-            if (!weaponVisualsAlreadyExists) InstantiateNewWeaponVisual(weapon);
-        }
+        // if (weapon == null)
+        // {
+        //     DeactivateCurrentWeaponVisual();
+        // }
+        // else
+        // {
+        //     bool weaponVisualsAlreadyExists = ActivateWeaponVisualIfAlreadyExists(weapon);
+        //     if (!weaponVisualsAlreadyExists) InstantiateNewWeaponVisual(weapon);
+        // }
     }
 
     private void DeactivateCurrentWeaponVisual()

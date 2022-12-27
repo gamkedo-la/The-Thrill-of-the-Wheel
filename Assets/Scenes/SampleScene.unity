@@ -11563,6 +11563,7 @@ GameObject:
   - component: {fileID: 2098632231209722648}
   - component: {fileID: 2098632231209722649}
   - component: {fileID: 2098632231209722650}
+  - component: {fileID: 2098632231209722651}
   m_Layer: 0
   m_Name: Tank Boat PJ
   m_TagString: Player
@@ -11649,6 +11650,18 @@ MonoBehaviour:
   _onlyRotate: 1
   _boostTime: 2
   _boostMultiplier: 2
+--- !u!114 &2098632231209722651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2098632231209722647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ce40e2ba8c81fb40a0a698ef7432267, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &2115930574955690307
 Transform:
   m_ObjectHideFlags: 0
@@ -14319,9 +14332,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ce40e2ba8c81fb40a0a698ef7432267, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  availableWeaponsPrefab:
-  - {fileID: 1127116340744003378, guid: 6b00959a455d5b74f9050de2fdb8e2cb, type: 3}
-  equipedWeapon: {fileID: 0}
 --- !u!4 &5371103875942727243
 Transform:
   m_ObjectHideFlags: 0
