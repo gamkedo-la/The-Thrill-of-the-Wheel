@@ -21,7 +21,7 @@ public class WeaponInventory : MonoBehaviour
     [SerializeField] List<WeaponStruct> weapons;
     private int equipedWeaponIndex;
 
-    public event Action<GameObject> onSwitchWeapon;
+    public event Action<string, int> onSwitchWeapon;
     
     // Start is called before the first frame update
     void Start()
@@ -40,6 +40,7 @@ public class WeaponInventory : MonoBehaviour
             {"sonic", 9},
         };
         equipedWeaponIndex = -1;
+        PickWeapon("turret");
     }
 
     void PickWeapon(string name) {
@@ -61,12 +62,12 @@ public class WeaponInventory : MonoBehaviour
     }
 
     void AddNewWeapon(string name) {
-        if(equipedWeaponIndex == -1) {
-            UpdateEquipedWeapon(0);
-        }
         int ammo = _weaponAmmoAddValues[name];
         WeaponStruct newWeapon = new WeaponStruct(name, ammo);
         weapons.Add(newWeapon);
+        if(equipedWeaponIndex == -1) {
+            UpdateEquipedWeapon(0);
+        }
     }
 
     void UseWeapon() {
@@ -75,9 +76,11 @@ public class WeaponInventory : MonoBehaviour
         temp.currentAmmo --;
         if (temp.currentAmmo < 1) {
             weapons.RemoveAt(equipedWeaponIndex);
-            equipedWeaponIndex--;
-            if(equipedWeaponIndex == -1 && weapons.Count > 0) {
+            int newIndex = equipedWeaponIndex - 1;
+            if(newIndex == -1 && weapons.Count > 0) {
                 UpdateEquipedWeapon(0);
+            } else {
+                UpdateEquipedWeapon(newIndex);
             }
         } else {
             weapons[equipedWeaponIndex] = temp;
@@ -86,6 +89,11 @@ public class WeaponInventory : MonoBehaviour
 
     void UpdateEquipedWeapon (int newIndex) {
         equipedWeaponIndex = newIndex;
+        if(newIndex == -1) {
+            onSwitchWeapon("none", 0);
+        } else {
+            onSwitchWeapon(weapons[newIndex].name, weapons[newIndex].currentAmmo);
+        }
     }
     
     public void SwitchWeapon(bool upwards)

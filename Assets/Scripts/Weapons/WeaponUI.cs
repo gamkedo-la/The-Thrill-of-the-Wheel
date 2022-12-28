@@ -1,65 +1,38 @@
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class WeaponUI : MonoBehaviour
 {
-    [SerializeField] Transform weaponVisualsLocation = null;
+    [SerializeField] private Image _weaponVisual;
+    [SerializeField] private TextMeshProUGUI _weaponAmmo;
+    [SerializeField] private Sprite[] _weaponSprites;
+    [SerializeField] private Dictionary<string, int> _spriteIndexes;
 
     private void Start()
     {
-        // FindObjectOfType<WeaponInventory>().onSwitchWeapon += SwitchWeaponTo;
+        FindObjectOfType<WeaponInventory>().onSwitchWeapon += SwitchWeaponTo;
+        _spriteIndexes = new Dictionary<string, int>() {
+            {"turret", 0},
+            {"barrel", 1},
+            {"missiles", 2},
+            {"sonic", 3},
+        };
     }
 
-    public void SwitchWeaponTo()
+    public void SwitchWeaponTo(string name, int amount)
     {
-        // if (weapon == null)
-        // {
-        //     DeactivateCurrentWeaponVisual();
-        // }
-        // else
-        // {
-        //     bool weaponVisualsAlreadyExists = ActivateWeaponVisualIfAlreadyExists(weapon);
-        //     if (!weaponVisualsAlreadyExists) InstantiateNewWeaponVisual(weapon);
-        // }
-    }
-
-    private void DeactivateCurrentWeaponVisual()
-    {
-        foreach (Transform child in weaponVisualsLocation)
-        {
-            if (child.gameObject.activeSelf)
-            {
-                child.gameObject.SetActive(false);
-            }
+        if(_weaponVisual.sprite == null){
+            _weaponVisual.color = new Color(1, 1, 1, 1);
         }
-    }
-
-    private bool ActivateWeaponVisualIfAlreadyExists(GameObject weapon)
-    {
-        bool weaponVisualsAlreadyExists = false;
-        foreach (Transform child in weaponVisualsLocation)
-        {
-            if (child.name == weapon.transform.GetChild(0).name)
-            {
-                child.gameObject.SetActive(true);
-                weaponVisualsAlreadyExists = true;
-                break;
-            }
+        if(name == "none") {
+            _weaponVisual.color = new Color(1, 1, 1, 0);
+            _weaponVisual.sprite = null;
+            _weaponAmmo.text = "";
+            return;
         }
-
-        return weaponVisualsAlreadyExists;
-    }
-
-    private void InstantiateNewWeaponVisual(GameObject weapon)
-    {
-        GameObject weaponInstance = Instantiate(
-                        weapon.transform.GetChild(0).gameObject,
-                        weaponVisualsLocation);
-
-        weaponInstance.layer = LayerMask.NameToLayer("UI");
-        weaponInstance.name = weapon.transform.GetChild(0).name;
-
-        weaponInstance.transform.localRotation = Quaternion.identity;
-        weaponInstance.transform.localPosition = Vector3.zero;
-        weaponInstance.transform.localScale = Vector3.one;
+        _weaponVisual.sprite = _weaponSprites[_spriteIndexes[name]];
+        _weaponAmmo.text = "" + amount;
     }
 }

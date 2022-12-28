@@ -8412,6 +8412,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1197694195, guid: 466d3b6efa8c94b4b9b9df9ecbdc30e6, type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1197694195, guid: 466d3b6efa8c94b4b9b9df9ecbdc30e6, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.0744037
+      objectReference: {fileID: 0}
+    - target: {fileID: 1197694195, guid: 466d3b6efa8c94b4b9b9df9ecbdc30e6, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.0744037
+      objectReference: {fileID: 0}
+    - target: {fileID: 1197694195, guid: 466d3b6efa8c94b4b9b9df9ecbdc30e6, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0.0754717
+      objectReference: {fileID: 0}
+    - target: {fileID: 1197694195, guid: 466d3b6efa8c94b4b9b9df9ecbdc30e6, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4279440147
+      objectReference: {fileID: 0}
     - target: {fileID: 5160333018603041794, guid: 466d3b6efa8c94b4b9b9df9ecbdc30e6, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -11662,6 +11682,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ce40e2ba8c81fb40a0a698ef7432267, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weapons: []
 --- !u!4 &2115930574955690307
 Transform:
   m_ObjectHideFlags: 0
@@ -14332,6 +14353,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ce40e2ba8c81fb40a0a698ef7432267, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weapons: []
 --- !u!4 &5371103875942727243
 Transform:
   m_ObjectHideFlags: 0
