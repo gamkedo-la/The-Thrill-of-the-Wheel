@@ -42,7 +42,16 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "SwitchWeapon",
+                    "name": "SwitchWeaponLeft",
+                    "type": "Button",
+                    "id": "3af8d1c0-23c0-4151-80b9-4ce74d0b5bcf",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "SwitchWeaponRight",
                     "type": "Button",
                     "id": "6ef81570-0b97-4102-bad8-d9a49f466890",
                     "expectedControlType": "Button",
@@ -306,11 +315,22 @@
                 {
                     "name": "",
                     "id": "df898515-d1cc-4735-bf11-27edf87dd4a3",
-                    "path": "<Keyboard>/tab",
+                    "path": "<Keyboard>/p",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "SwitchWeapon",
+                    "action": "SwitchWeaponRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7ec23216-1ed1-4754-a307-e7b609c9a4e1",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SwitchWeaponRight",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -333,6 +353,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Menu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a69eaf19-a500-4830-9c19-b3c33fd52f7a",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SwitchWeaponLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "46aa63b5-d2b5-4a56-9e6f-d87836631094",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SwitchWeaponLeft",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

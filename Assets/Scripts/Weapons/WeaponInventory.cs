@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine.InputSystem;
 using UnityEngine;
 
 public class WeaponInventory : MonoBehaviour
@@ -17,13 +18,30 @@ public class WeaponInventory : MonoBehaviour
 
     private Dictionary<string, int> _weaponAmmoAddValues;
     private Dictionary<string, int> _weaponMaxAmmoValues;
-
+    private DriveInputs _driveInputs;
     [SerializeField] List<WeaponStruct> weapons;
     private int equipedWeaponIndex;
 
     public event Action<string, int> onSwitchWeapon;
     
     // Start is called before the first frame update
+    private void Awake() {
+        _driveInputs = new DriveInputs();
+    }
+
+    private void OnEnable() {
+        _driveInputs.Player.SwitchWeaponLeft.performed += SwitchWeapon;
+        _driveInputs.Player.SwitchWeaponLeft.Enable();
+
+        _driveInputs.Player.SwitchWeaponRight.performed += SwitchWeapon;
+        _driveInputs.Player.SwitchWeaponRight.Enable();
+    }
+
+    private void OnDisable() {
+        _driveInputs.Player.SwitchWeaponLeft.Disable();
+        _driveInputs.Player.SwitchWeaponRight.Disable();
+    }
+
     void Start()
     {
         weapons = new List<WeaponStruct>();
@@ -40,7 +58,6 @@ public class WeaponInventory : MonoBehaviour
             {"sonic", 9},
         };
         equipedWeaponIndex = -1;
-        PickWeapon("turret");
     }
 
     void PickWeapon(string name) {
@@ -96,12 +113,13 @@ public class WeaponInventory : MonoBehaviour
         }
     }
     
-    public void SwitchWeapon(bool upwards)
+    public void SwitchWeapon(InputAction.CallbackContext obj)
     {
+        string actionName = obj.action.name;
         if(weapons.Count < 2) return; // if less than 2 weapons you cant switch
         bool isOnEdge;
         int newIndex;
-        if(upwards) {
+        if(actionName=="SwitchWeaponRight") {
             isOnEdge = equipedWeaponIndex + 1 < weapons.Count;
             newIndex = isOnEdge ? equipedWeaponIndex + 1 : 0;
         } else {

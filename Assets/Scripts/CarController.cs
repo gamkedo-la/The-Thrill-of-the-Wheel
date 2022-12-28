@@ -29,7 +29,6 @@ public class CarController : MonoBehaviour
     private DriveInputs _driveInputs;
     private InputAction _movementAction;
     private InputAction _brakeAction;
-    private InputAction _switchWeapon;
     // Acceleration Variables
     [SerializeField] private float _maxAcceleration;
     [SerializeField] private float _brakeAcceleration;
@@ -61,8 +60,6 @@ public class CarController : MonoBehaviour
         _rb.centerOfMass = _centerOfMass;
         _movementAction = _driveInputs.Player.Move;
         _brakeAction = _driveInputs.Player.HandBrake;
-        _switchWeapon = _driveInputs.Player.SwitchWeapon;
-
         _weaponInventory = GetComponent<WeaponInventory>();
     }
 
@@ -70,14 +67,12 @@ public class CarController : MonoBehaviour
     {
         _movementAction.Enable();
         _brakeAction.Enable();
-        _switchWeapon.Enable();
     }
 
     private void OnDisable()
     {
         _movementAction.Disable();
         _brakeAction.Disable();
-        _switchWeapon.Disable();
     }
 
     void Update()
@@ -99,7 +94,6 @@ public class CarController : MonoBehaviour
 
     void LateUpdate()
     {
-        SwitchWeapon();
     }
 
     void GetInputs()
@@ -163,12 +157,6 @@ public class CarController : MonoBehaviour
             }
             
         }
-    }
-
-    void SwitchWeapon()
-    {
-        if (!_switchWeapon.triggered) return;
-        // _weaponInventory.SwitchWeapon();
     }
 
     void CheckBoostTime()
