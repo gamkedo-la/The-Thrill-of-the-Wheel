@@ -179,5 +179,7 @@ public class CarController : MonoBehaviour
         _rb.AddForce(_rb.velocity.normalized * _boostMultiplier, ForceMode.Impulse);
     }
 
-
+    public void OnWeaponPickup(string weaponName) {
+        _weaponInventory.PickWeapon(weaponName);
+    }
 }

@@ -60,7 +60,7 @@ public class WeaponInventory : MonoBehaviour
         equipedWeaponIndex = -1;
     }
 
-    void PickWeapon(string name) {
+    public void PickWeapon(string name) {
         int weaponIndex = weapons.FindIndex(0, weapons.Count, weapon => weapon.name == name);
         if(weaponIndex != -1) {
             AddExistingWeapon(name, weaponIndex);
