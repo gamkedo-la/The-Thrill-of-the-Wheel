@@ -8422,26 +8422,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1197694195, guid: 466d3b6efa8c94b4b9b9df9ecbdc30e6, type: 3}
-      propertyPath: m_text
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1197694195, guid: 466d3b6efa8c94b4b9b9df9ecbdc30e6, type: 3}
-      propertyPath: m_fontColor.b
-      value: 0.0744037
-      objectReference: {fileID: 0}
-    - target: {fileID: 1197694195, guid: 466d3b6efa8c94b4b9b9df9ecbdc30e6, type: 3}
-      propertyPath: m_fontColor.g
-      value: 0.0744037
-      objectReference: {fileID: 0}
-    - target: {fileID: 1197694195, guid: 466d3b6efa8c94b4b9b9df9ecbdc30e6, type: 3}
-      propertyPath: m_fontColor.r
-      value: 0.0754717
-      objectReference: {fileID: 0}
-    - target: {fileID: 1197694195, guid: 466d3b6efa8c94b4b9b9df9ecbdc30e6, type: 3}
-      propertyPath: m_fontColor32.rgba
-      value: 4279440147
-      objectReference: {fileID: 0}
     - target: {fileID: 5160333018603041794, guid: 466d3b6efa8c94b4b9b9df9ecbdc30e6, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -9552,6 +9532,23 @@ WheelCollider:
     m_AsymptoteValue: 0.75
     m_Stiffness: 2.4
   m_Enabled: 1
+--- !u!1 &1789902010 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1353367170, guid: 466d3b6efa8c94b4b9b9df9ecbdc30e6, type: 3}
+  m_PrefabInstance: {fileID: 1429431536}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1789902012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1789902010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed3f8373392f33d4f87e902d2a9df36e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1812574986
 GameObject:
   m_ObjectHideFlags: 0
@@ -11598,6 +11595,7 @@ GameObject:
   - component: {fileID: 2098632231209722649}
   - component: {fileID: 2098632231209722650}
   - component: {fileID: 2098632231209722651}
+  - component: {fileID: 2098632231209722652}
   m_Layer: 0
   m_Name: Tank Boat PJ
   m_TagString: Player
@@ -11697,6 +11695,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapons: []
+--- !u!114 &2098632231209722652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2098632231209722647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9158ebf2f4be0574f8837dcb82bf9f97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHealth: 100
+  _currentHealth: 100
 --- !u!4 &2115930574955690307
 Transform:
   m_ObjectHideFlags: 0
