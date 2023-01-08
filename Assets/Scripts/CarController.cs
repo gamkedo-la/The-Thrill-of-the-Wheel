@@ -29,18 +29,19 @@ public class CarController : MonoBehaviour
     private DriveInputs _driveInputs;
     private InputAction _movementAction;
     private InputAction _brakeAction;
-    private InputAction _switchWeapon;
     // Acceleration Variables
     [SerializeField] private float _maxAcceleration;
     [SerializeField] private float _brakeAcceleration;
     // Steer Variables
     [SerializeField] private float _turnSensitivity;
     [SerializeField] private float _maxSteerAngle;
-    // 
+    // Animation Variables
+    [SerializeField] private bool _onlyRotate;
     private Vector3 _centerOfMass;
 
     private float _throttleInput;
     private float _steerInput;
+    private float _brakeInput;
     private Rigidbody _rb;
     private WeaponInventory _weaponInventory;
 
@@ -59,8 +60,6 @@ public class CarController : MonoBehaviour
         _rb.centerOfMass = _centerOfMass;
         _movementAction = _driveInputs.Player.Move;
         _brakeAction = _driveInputs.Player.HandBrake;
-        _switchWeapon = _driveInputs.Player.SwitchWeapon;
-
         _weaponInventory = GetComponent<WeaponInventory>();
     }
 
@@ -68,79 +67,75 @@ public class CarController : MonoBehaviour
     {
         _movementAction.Enable();
         _brakeAction.Enable();
-        _switchWeapon.Enable();
     }
 
     private void OnDisable()
     {
         _movementAction.Disable();
         _brakeAction.Disable();
-        _switchWeapon.Disable();
     }
 
     void Update()
     {
-        GetInputs();
         AnimateWheels();
     }
 
     private void FixedUpdate() {
+        GetInputs();
         if (_boost)
         {
             CheckBoostTime();
             ApplyBoostForce();
         }
+        Move();
+        Steer();
+        Brake();
     }
 
     void LateUpdate()
     {
-        Move();
-        Steer();
-        Brake();
-        SwitchWeapon();
     }
 
     void GetInputs()
     {
         _throttleInput = _movementAction.ReadValue<Vector2>().y;
         _steerInput = _movementAction.ReadValue<Vector2>().x;
+        _brakeInput = _brakeAction.ReadValue<float>();
     }
 
     void Move()
     {
-        foreach (var wheel in _wheels)
-        {
-            wheel.collider.motorTorque = _throttleInput * 2200 * _maxAcceleration * Time.deltaTime;
+        if(_brakeInput == 0) {
+            foreach (var wheel in _wheels)
+            {
+                if(wheel.collider) {
+                    wheel.collider.motorTorque = _throttleInput * _maxAcceleration * Time.deltaTime;
+                }
+            }
         }
     }
 
     void Steer()
     {
-        foreach (var wheel in _wheels)
+        foreach (Wheel wheel in _wheels)
         {
-            if (wheel.axel == Axel.Front)
+            if (wheel.axel == Axel.Front && wheel.collider)
             {
-                var _steerAngle = _steerInput * _turnSensitivity * _maxSteerAngle;
-                wheel.collider.steerAngle = Mathf.Lerp(wheel.collider.steerAngle, _steerAngle, 0.6f);
+                float _steerAngle = _steerInput * _maxSteerAngle;
+                wheel.collider.steerAngle = _steerAngle;
             }
         }
     }
 
     void Brake()
     {
-        if (_brakeAction.ReadValue<float>() > 0 || _throttleInput == 0)
-        {
+        if(_throttleInput == 0) {
             foreach (var wheel in _wheels)
             {
-                wheel.collider.brakeTorque = 300 * _brakeAcceleration * Time.deltaTime;
-            }
-
-        }
-        else
-        {
-            foreach (var wheel in _wheels)
-            {
-                wheel.collider.brakeTorque = 0;
+                if (wheel.collider) {
+                    wheel.collider.motorTorque = 0;
+                    wheel.collider.brakeTorque = _brakeInput * _brakeAcceleration * Time.deltaTime;
+                }
             }
         }
     }
@@ -151,17 +146,17 @@ public class CarController : MonoBehaviour
         {
             Quaternion rot;
             Vector3 pos;
-            wheel.collider.GetWorldPose(out pos, out rot);
-            wheel.model.transform.position = pos;
-            // rot *= Quaternion.Euler(0, 0, 0); /// this is to rotate wheels in correct direction, perhaps tyler can help with it.
-            wheel.model.transform.rotation = rot;
+            if (_onlyRotate) {
+                _wheels[3].collider.GetWorldPose(out pos, out rot); // the third wheel will always be one of the rear ones that only rotates in the front/back axis
+                wheel.model.transform.rotation = rot;
+            } else {
+                wheel.collider.GetWorldPose(out pos, out rot);
+                wheel.model.transform.position = pos;
+                // rot *= Quaternion.Euler(0, 0, 0); /// this is to rotate wheels in correct direction, perhaps tyler can help with it.
+                wheel.model.transform.rotation = rot;
+            }
+            
         }
-    }
-
-    void SwitchWeapon()
-    {
-        if (!_switchWeapon.triggered) return;
-        _weaponInventory.SwitchWeapon();
     }
 
     void CheckBoostTime()
@@ -184,5 +179,7 @@ public class CarController : MonoBehaviour
         _rb.AddForce(_rb.velocity.normalized * _boostMultiplier, ForceMode.Impulse);
     }
 
-
+    public void OnWeaponPickup(string weaponName) {
+        _weaponInventory.PickWeapon(weaponName);
+    }
 }

@@ -64,7 +64,16 @@ public partial class @DriveInputs : IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""SwitchWeapon"",
+                    ""name"": ""SwitchWeaponLeft"",
+                    ""type"": ""Button"",
+                    ""id"": ""3af8d1c0-23c0-4151-80b9-4ce74d0b5bcf"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SwitchWeaponRight"",
                     ""type"": ""Button"",
                     ""id"": ""6ef81570-0b97-4102-bad8-d9a49f466890"",
                     ""expectedControlType"": ""Button"",
@@ -328,11 +337,22 @@ public partial class @DriveInputs : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""df898515-d1cc-4735-bf11-27edf87dd4a3"",
-                    ""path"": ""<Keyboard>/tab"",
+                    ""path"": ""<Keyboard>/p"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""SwitchWeapon"",
+                    ""action"": ""SwitchWeaponRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7ec23216-1ed1-4754-a307-e7b609c9a4e1"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwitchWeaponRight"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -355,6 +375,28 @@ public partial class @DriveInputs : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Menu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a69eaf19-a500-4830-9c19-b3c33fd52f7a"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwitchWeaponLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""46aa63b5-d2b5-4a56-9e6f-d87836631094"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SwitchWeaponLeft"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -946,7 +988,8 @@ public partial class @DriveInputs : IInputActionCollection2, IDisposable
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
         m_Player_FireRegular = m_Player.FindAction("FireRegular", throwIfNotFound: true);
         m_Player_HandBrake = m_Player.FindAction("Hand Brake", throwIfNotFound: true);
-        m_Player_SwitchWeapon = m_Player.FindAction("SwitchWeapon", throwIfNotFound: true);
+        m_Player_SwitchWeaponLeft = m_Player.FindAction("SwitchWeaponLeft", throwIfNotFound: true);
+        m_Player_SwitchWeaponRight = m_Player.FindAction("SwitchWeaponRight", throwIfNotFound: true);
         m_Player_Menu = m_Player.FindAction("Menu", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
@@ -1023,7 +1066,8 @@ public partial class @DriveInputs : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Look;
     private readonly InputAction m_Player_FireRegular;
     private readonly InputAction m_Player_HandBrake;
-    private readonly InputAction m_Player_SwitchWeapon;
+    private readonly InputAction m_Player_SwitchWeaponLeft;
+    private readonly InputAction m_Player_SwitchWeaponRight;
     private readonly InputAction m_Player_Menu;
     public struct PlayerActions
     {
@@ -1033,7 +1077,8 @@ public partial class @DriveInputs : IInputActionCollection2, IDisposable
         public InputAction @Look => m_Wrapper.m_Player_Look;
         public InputAction @FireRegular => m_Wrapper.m_Player_FireRegular;
         public InputAction @HandBrake => m_Wrapper.m_Player_HandBrake;
-        public InputAction @SwitchWeapon => m_Wrapper.m_Player_SwitchWeapon;
+        public InputAction @SwitchWeaponLeft => m_Wrapper.m_Player_SwitchWeaponLeft;
+        public InputAction @SwitchWeaponRight => m_Wrapper.m_Player_SwitchWeaponRight;
         public InputAction @Menu => m_Wrapper.m_Player_Menu;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
@@ -1056,9 +1101,12 @@ public partial class @DriveInputs : IInputActionCollection2, IDisposable
                 @HandBrake.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHandBrake;
                 @HandBrake.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHandBrake;
                 @HandBrake.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnHandBrake;
-                @SwitchWeapon.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwitchWeapon;
-                @SwitchWeapon.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwitchWeapon;
-                @SwitchWeapon.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwitchWeapon;
+                @SwitchWeaponLeft.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwitchWeaponLeft;
+                @SwitchWeaponLeft.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwitchWeaponLeft;
+                @SwitchWeaponLeft.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwitchWeaponLeft;
+                @SwitchWeaponRight.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwitchWeaponRight;
+                @SwitchWeaponRight.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwitchWeaponRight;
+                @SwitchWeaponRight.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwitchWeaponRight;
                 @Menu.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMenu;
                 @Menu.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMenu;
                 @Menu.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMenu;
@@ -1078,9 +1126,12 @@ public partial class @DriveInputs : IInputActionCollection2, IDisposable
                 @HandBrake.started += instance.OnHandBrake;
                 @HandBrake.performed += instance.OnHandBrake;
                 @HandBrake.canceled += instance.OnHandBrake;
-                @SwitchWeapon.started += instance.OnSwitchWeapon;
-                @SwitchWeapon.performed += instance.OnSwitchWeapon;
-                @SwitchWeapon.canceled += instance.OnSwitchWeapon;
+                @SwitchWeaponLeft.started += instance.OnSwitchWeaponLeft;
+                @SwitchWeaponLeft.performed += instance.OnSwitchWeaponLeft;
+                @SwitchWeaponLeft.canceled += instance.OnSwitchWeaponLeft;
+                @SwitchWeaponRight.started += instance.OnSwitchWeaponRight;
+                @SwitchWeaponRight.performed += instance.OnSwitchWeaponRight;
+                @SwitchWeaponRight.canceled += instance.OnSwitchWeaponRight;
                 @Menu.started += instance.OnMenu;
                 @Menu.performed += instance.OnMenu;
                 @Menu.canceled += instance.OnMenu;
@@ -1244,7 +1295,8 @@ public partial class @DriveInputs : IInputActionCollection2, IDisposable
         void OnLook(InputAction.CallbackContext context);
         void OnFireRegular(InputAction.CallbackContext context);
         void OnHandBrake(InputAction.CallbackContext context);
-        void OnSwitchWeapon(InputAction.CallbackContext context);
+        void OnSwitchWeaponLeft(InputAction.CallbackContext context);
+        void OnSwitchWeaponRight(InputAction.CallbackContext context);
         void OnMenu(InputAction.CallbackContext context);
     }
     public interface IUIActions

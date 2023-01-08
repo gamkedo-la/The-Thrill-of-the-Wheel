@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3217817773845460999}
   - component: {fileID: 3259193575983339400}
   - component: {fileID: 811504996266790092}
+  - component: {fileID: 1926479144}
   m_Layer: 0
   m_Name: Model
   m_TagString: Untagged
@@ -115,6 +116,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
+--- !u!114 &1926479144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4010174299335858642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 927ecee00f044ec489c1953f03a449e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _crateParent: {fileID: 8569897434824340630}
 --- !u!1 &8569897434824340630
 GameObject:
   m_ObjectHideFlags: 0
@@ -4969,7 +4983,6 @@ GameObject:
   m_Component:
   - component: {fileID: 8569897435673824229}
   - component: {fileID: 8569897435673824230}
-  - component: {fileID: 8569897435673824228}
   m_Layer: 0
   m_Name: CollectibleCrate
   m_TagString: Untagged
@@ -5014,15 +5027,3 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &8569897435673824228
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8569897435673824231}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 927ecee00f044ec489c1953f03a449e5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
