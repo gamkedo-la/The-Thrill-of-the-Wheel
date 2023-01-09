@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6131a09aecdb1da489561c941fbc2464, type: 3}
+  m_Name: 3_Armadillo
+  m_EditorClassIdentifier: 
+  carName: Armadillo
+  carDescription: '"Car Description Goes Here"'
+  carPrice: 2000
+  speed: 50
+  acceleration: 50
+  handling: 60
+  carModel: {fileID: 3098622883722614244, guid: a1ab796b70a167741961eb71fbba3cc9, type: 3}

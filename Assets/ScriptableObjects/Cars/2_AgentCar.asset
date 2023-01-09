@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6131a09aecdb1da489561c941fbc2464, type: 3}
+  m_Name: 2_AgentCar
+  m_EditorClassIdentifier: 
+  carName: Agent Car
+  carDescription: '"Car Description Goes Here"'
+  carPrice: 500
+  speed: 20
+  acceleration: 25
+  handling: 40
+  carModel: {fileID: 6403644427213507237, guid: d9645dbe9121a694cbeb6d4b946a71d9, type: 3}
