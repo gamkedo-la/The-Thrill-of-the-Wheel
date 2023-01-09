@@ -3,7 +3,57 @@ guid: b5649188b5dcb7944a239d0838463032
 ModelImporter:
   serializedVersion: 21202
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: CarBody
+    second: {fileID: 2100000, guid: b19fa8f3d90ec5d4a94efb77893894f1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RocketBody
+    second: {fileID: 2100000, guid: cc7122f8ce42aab438ad707cbf2a4496, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RocketHeatRing
+    second: {fileID: 2100000, guid: 3f1485640b22fc14692a91815aa1f11a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: RocketInnter
+    second: {fileID: 2100000, guid: 65ffdb556cf9c19478b023084b2c0cc4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Rubber
+    second: {fileID: 2100000, guid: d05e4963f54b97b47be23432e514dd9f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TireTread
+    second: {fileID: 2100000, guid: af6bf8c460ce8b543ad57dd69bc8d80b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WheelCap
+    second: {fileID: 2100000, guid: 4067adac734035f4a87d4eadf6a03245, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WheelCenter
+    second: {fileID: 2100000, guid: c30ac0323941dd749b44b258141914ba, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WheelRim
+    second: {fileID: 2100000, guid: 4fdc236329ebf33438c562f29d7cd643, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Windows
+    second: {fileID: 2100000, guid: 19b24c38e353d5e4cb4bdfb0295d424b, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -35,7 +85,7 @@ ModelImporter:
     isReadable: 0
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 1.5
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
@@ -88,7 +138,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 1
+    globalScale: 1.5
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
