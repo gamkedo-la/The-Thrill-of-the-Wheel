@@ -37,6 +37,7 @@ public class CarController : MonoBehaviour
     [SerializeField] private float _maxSteerAngle;
     // Animation Variables
     [SerializeField] private bool _onlyRotate;
+    
     private Vector3 _centerOfMass;
 
     private float _throttleInput;
@@ -52,6 +53,9 @@ public class CarController : MonoBehaviour
     float _currentBoostTimer = 0f;
 
     public bool IsBoosted { get => _boost; }
+
+    [Header("Temporary Until Armadillo Wheels Fixed")]
+    [SerializeField] private bool _armadillo;
 
     void Awake()
     {
@@ -149,6 +153,8 @@ public class CarController : MonoBehaviour
             if (_onlyRotate) {
                 _wheels[3].collider.GetWorldPose(out pos, out rot); // the third wheel will always be one of the rear ones that only rotates in the front/back axis
                 wheel.model.transform.rotation = rot;
+            } else if(_armadillo){
+            
             } else {
                 wheel.collider.GetWorldPose(out pos, out rot);
                 wheel.model.transform.position = pos;
