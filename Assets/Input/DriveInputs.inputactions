@@ -67,6 +67,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "FireSpecial",
+                    "type": "Button",
+                    "id": "ddf53461-0ecc-4aa0-b0ca-7d199b4cf5e4",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -375,6 +384,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "SwitchWeaponLeft",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1b2c9f4a-96b6-4340-8612-3dd977a35eda",
+                    "path": "<Mouse>/middleButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "FireSpecial",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2cc6e385-ad22-44de-b21d-6985283a95ee",
+                    "path": "<Gamepad>/rightStickPress",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "FireSpecial",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

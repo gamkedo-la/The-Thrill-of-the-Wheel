@@ -43,8 +43,11 @@ public class CarController : MonoBehaviour
     private float _throttleInput;
     private float _steerInput;
     private float _brakeInput;
+    private bool _weaponInput;
     private Rigidbody _rb;
     private WeaponInventory _weaponInventory;
+    private Action specialWeapon;
+    private Action test;
 
     // Boost Variables
     bool _boost = false;
@@ -64,6 +67,7 @@ public class CarController : MonoBehaviour
         _rb.centerOfMass = _centerOfMass;
         _movementAction = _driveInputs.Player.Move;
         _brakeAction = _driveInputs.Player.HandBrake;
+        _driveInputs.Player.FireSpecial.performed += FireSpecial;
         _weaponInventory = GetComponent<WeaponInventory>();
     }
 
@@ -71,12 +75,14 @@ public class CarController : MonoBehaviour
     {
         _movementAction.Enable();
         _brakeAction.Enable();
+        _driveInputs.Player.FireSpecial.Enable();
     }
 
     private void OnDisable()
     {
         _movementAction.Disable();
         _brakeAction.Disable();
+        _driveInputs.Player.FireSpecial.Disable();
     }
 
     void Update()
@@ -105,6 +111,7 @@ public class CarController : MonoBehaviour
         _throttleInput = _movementAction.ReadValue<Vector2>().y;
         _steerInput = _movementAction.ReadValue<Vector2>().x;
         _brakeInput = _brakeAction.ReadValue<float>();
+
     }
 
     void Move()
@@ -187,5 +194,19 @@ public class CarController : MonoBehaviour
 
     public void OnWeaponPickup(string weaponName) {
         _weaponInventory.PickWeapon(weaponName);
+    }
+
+    internal void RegisterWeapon(Action special)
+    {
+        specialWeapon = special;
+    }
+
+    private void FireSpecial(InputAction.CallbackContext obj)
+    {
+        if(specialWeapon == null){
+            return;
+        }
+
+        specialWeapon();
     }
 }
