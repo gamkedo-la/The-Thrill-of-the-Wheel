@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 835614623356302484}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1.54, z: -2.12}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -88,7 +88,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2436489929801302118}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: -0.002705248, w: 0.9999964}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -100,7 +100,7 @@ Transform:
   - {fileID: 8585036463996553622}
   m_Father: {fileID: 912438192900741892}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -0.31}
 --- !u!1 &2535897534746038301
 GameObject:
   m_ObjectHideFlags: 0
@@ -126,7 +126,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2535897534746038301}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.524, z: 0.585}
+  m_LocalPosition: {x: 1.02, y: 0.71, z: 2.82}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -141,7 +141,7 @@ WheelCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2535897534746038301}
   m_Center: {x: 0, y: 0, z: 0}
-  m_Radius: 0.38
+  m_Radius: 0.51
   m_SuspensionSpring:
     spring: 35000
     damper: 4500
@@ -188,7 +188,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2591388323094429857}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.649, y: 0.745, z: -0.888}
+  m_LocalPosition: {x: -1.5, y: 0.979, z: -2.473}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -203,7 +203,7 @@ WheelCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2591388323094429857}
   m_Center: {x: 0, y: 0, z: 0}
-  m_Radius: 0.59
+  m_Radius: 0.8
   m_SuspensionSpring:
     spring: 35000
     damper: 4500
@@ -237,7 +237,7 @@ GameObject:
   - component: {fileID: 1864668806380803089}
   - component: {fileID: 5345554258975229683}
   - component: {fileID: 1215626516480999869}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Armadillo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -290,18 +290,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _wheels:
-  - model: {fileID: 0}
-    collider: {fileID: 0}
+  - model: {fileID: 3055067219192589678}
+    collider: {fileID: 4463556320537526188}
     axel: 0
-  - model: {fileID: 0}
-    collider: {fileID: 0}
+  - model: {fileID: 7675748155796137965}
+    collider: {fileID: 4364801306101003911}
     axel: 0
-  - model: {fileID: 0}
-    collider: {fileID: 0}
-    axel: 0
-  - model: {fileID: 0}
-    collider: {fileID: 0}
-    axel: 0
+  - model: {fileID: 1537767358776540077}
+    collider: {fileID: 9138927513780121476}
+    axel: 1
+  - model: {fileID: 6670180988554315039}
+    collider: {fileID: 2595176201987314088}
+    axel: 1
   _maxAcceleration: 0
   _brakeAcceleration: 0
   _turnSensitivity: 0
@@ -309,6 +309,7 @@ MonoBehaviour:
   _onlyRotate: 0
   _boostTime: 2
   _boostMultiplier: 2
+  _armadillo: 1
 --- !u!114 &1215626516480999869
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -332,7 +333,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6719941049176216526}
   - component: {fileID: 7660570130043013843}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: CarBody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -346,14 +347,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4653240838568539186}
-  m_LocalRotation: {x: -0.5, y: -0.5, z: -0.5, w: 0.5}
+  m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: -0.17, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7281270508745992943}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -90, y: -90, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!64 &7660570130043013843
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -393,7 +394,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5056992047672081764}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.649, y: 0.745, z: 0.883}
+  m_LocalPosition: {x: 1.5, y: 0.979, z: -2.473}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -408,7 +409,7 @@ WheelCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5056992047672081764}
   m_Center: {x: 0, y: 0, z: 0}
-  m_Radius: 0.59
+  m_Radius: 0.8
   m_SuspensionSpring:
     spring: 35000
     damper: 4500
@@ -455,7 +456,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6455133263459808794}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.529, z: -0.574}
+  m_LocalPosition: {x: -1, y: 0.71, z: 2.82}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -470,7 +471,7 @@ WheelCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6455133263459808794}
   m_Center: {x: 0, y: 0, z: 0}
-  m_Radius: 0.38
+  m_Radius: 0.51
   m_SuspensionSpring:
     spring: 35000
     damper: 4500
@@ -533,7 +534,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b5649188b5dcb7944a239d0838463032, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b5649188b5dcb7944a239d0838463032, type: 3}
       propertyPath: m_LocalRotation.y
@@ -541,11 +542,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b5649188b5dcb7944a239d0838463032, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.7071068
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b5649188b5dcb7944a239d0838463032, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b5649188b5dcb7944a239d0838463032, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -553,7 +554,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b5649188b5dcb7944a239d0838463032, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: -90
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: b5649188b5dcb7944a239d0838463032, type: 3}
       propertyPath: m_Enabled
@@ -565,9 +566,29 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b5649188b5dcb7944a239d0838463032, type: 3}
+--- !u!1 &1537767358776540077 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -8860256992672492681, guid: b5649188b5dcb7944a239d0838463032, type: 3}
+  m_PrefabInstance: {fileID: 1179156361435752666}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1717996865086574385 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b5649188b5dcb7944a239d0838463032, type: 3}
+  m_PrefabInstance: {fileID: 1179156361435752666}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3055067219192589678 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4195370258228250036, guid: b5649188b5dcb7944a239d0838463032, type: 3}
+  m_PrefabInstance: {fileID: 1179156361435752666}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6670180988554315039 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5533809253075987909, guid: b5649188b5dcb7944a239d0838463032, type: 3}
+  m_PrefabInstance: {fileID: 1179156361435752666}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7675748155796137965 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8851974812597456695, guid: b5649188b5dcb7944a239d0838463032, type: 3}
   m_PrefabInstance: {fileID: 1179156361435752666}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4330415657828713597
