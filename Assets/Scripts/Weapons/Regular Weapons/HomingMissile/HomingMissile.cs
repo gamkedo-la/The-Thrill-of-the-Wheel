@@ -22,6 +22,10 @@ public class HomingMissile : MonoBehaviour
         RotateRocket();
     }
 
+    public void SetTarget(Transform target) {
+        _target = target;
+    }
+
     private void PredictMovement(float leadTimePercentage) {
         var predictionTime = Mathf.Lerp(0, _maxTimePrediction, leadTimePercentage);
         Rigidbody targetRigidbody = _target.GetComponent<Rigidbody>();

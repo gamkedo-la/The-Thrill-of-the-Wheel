@@ -98,6 +98,15 @@ public partial class @DriveInputs : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""FireAlternative"",
+                    ""type"": ""Button"",
+                    ""id"": ""61687436-14be-4876-8b01-40d83e79dfef"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -428,6 +437,28 @@ public partial class @DriveInputs : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""FireSpecial"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c0f6e4ea-d0ac-4eb5-97e4-94f68ae034dd"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""FireAlternative"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""333738de-3495-4480-bf4c-f6c7d3058549"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""FireAlternative"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1023,6 +1054,7 @@ public partial class @DriveInputs : IInputActionCollection2, IDisposable
         m_Player_SwitchWeaponRight = m_Player.FindAction("SwitchWeaponRight", throwIfNotFound: true);
         m_Player_Menu = m_Player.FindAction("Menu", throwIfNotFound: true);
         m_Player_FireSpecial = m_Player.FindAction("FireSpecial", throwIfNotFound: true);
+        m_Player_FireAlternative = m_Player.FindAction("FireAlternative", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1102,6 +1134,7 @@ public partial class @DriveInputs : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_SwitchWeaponRight;
     private readonly InputAction m_Player_Menu;
     private readonly InputAction m_Player_FireSpecial;
+    private readonly InputAction m_Player_FireAlternative;
     public struct PlayerActions
     {
         private @DriveInputs m_Wrapper;
@@ -1114,6 +1147,7 @@ public partial class @DriveInputs : IInputActionCollection2, IDisposable
         public InputAction @SwitchWeaponRight => m_Wrapper.m_Player_SwitchWeaponRight;
         public InputAction @Menu => m_Wrapper.m_Player_Menu;
         public InputAction @FireSpecial => m_Wrapper.m_Player_FireSpecial;
+        public InputAction @FireAlternative => m_Wrapper.m_Player_FireAlternative;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1147,6 +1181,9 @@ public partial class @DriveInputs : IInputActionCollection2, IDisposable
                 @FireSpecial.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFireSpecial;
                 @FireSpecial.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFireSpecial;
                 @FireSpecial.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFireSpecial;
+                @FireAlternative.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFireAlternative;
+                @FireAlternative.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFireAlternative;
+                @FireAlternative.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFireAlternative;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1175,6 +1212,9 @@ public partial class @DriveInputs : IInputActionCollection2, IDisposable
                 @FireSpecial.started += instance.OnFireSpecial;
                 @FireSpecial.performed += instance.OnFireSpecial;
                 @FireSpecial.canceled += instance.OnFireSpecial;
+                @FireAlternative.started += instance.OnFireAlternative;
+                @FireAlternative.performed += instance.OnFireAlternative;
+                @FireAlternative.canceled += instance.OnFireAlternative;
             }
         }
     }
@@ -1339,6 +1379,7 @@ public partial class @DriveInputs : IInputActionCollection2, IDisposable
         void OnSwitchWeaponRight(InputAction.CallbackContext context);
         void OnMenu(InputAction.CallbackContext context);
         void OnFireSpecial(InputAction.CallbackContext context);
+        void OnFireAlternative(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

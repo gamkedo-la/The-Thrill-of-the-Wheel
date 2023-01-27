@@ -23,6 +23,10 @@ public class WeaponInventory : MonoBehaviour
     private int equipedWeaponIndex;
 
     public event Action<string, int> onSwitchWeapon;
+
+    // Weapon variables
+    public Transform gunPoint;
+    public GameObject missilePrefab;
     
     // Start is called before the first frame update
     private void Awake() {
@@ -35,11 +39,16 @@ public class WeaponInventory : MonoBehaviour
 
         _driveInputs.Player.SwitchWeaponRight.performed += SwitchWeapon;
         _driveInputs.Player.SwitchWeaponRight.Enable();
+
+        _driveInputs.Player.FireAlternative.performed += FireEquippedWeapon;
+        _driveInputs.Player.FireAlternative.Enable();
+
     }
 
     private void OnDisable() {
         _driveInputs.Player.SwitchWeaponLeft.Disable();
         _driveInputs.Player.SwitchWeaponRight.Disable();
+        _driveInputs.Player.FireAlternative.Disable();
     }
 
     void Start()
@@ -101,6 +110,47 @@ public class WeaponInventory : MonoBehaviour
             }
         } else {
             weapons[equipedWeaponIndex] = temp;
+        }
+    }
+
+    Transform GetClosestEnemy (GameObject[] enemies) {
+        float minDistance = float.PositiveInfinity;
+        Transform closestEnemy = enemies[0].transform;
+        foreach (GameObject enemy in enemies)
+        {
+            if(enemy.activeInHierarchy) {
+                Vector3 enemyPosition = enemy.transform.position;
+                float distanceToEnemy = Vector3.Distance(transform.position, enemyPosition);
+                if( distanceToEnemy < minDistance) {
+                    minDistance = distanceToEnemy;
+                    closestEnemy = enemy.transform;
+                }
+            }
+        }
+        return closestEnemy;
+    }
+
+    void FireEquippedWeapon (InputAction.CallbackContext obj) {
+        if(weapons.Count < 1) return;
+
+        string currentWeapon = weapons[equipedWeaponIndex].name;
+        switch (currentWeapon)
+        {
+            case "missiles":
+                GameObject[] enemies = GameManager.Instance.GetEnemies();
+                Transform closestEnemy = GetClosestEnemy(enemies);
+                GameObject Missile = Instantiate(missilePrefab, gunPoint.position, Quaternion.identity);
+                Missile.GetComponent<HomingMissile>().SetTarget(closestEnemy);
+                break;
+            case "turret":
+                Debug.Log("turret");
+                break;
+            case "barrel":
+                Debug.Log("barrel");
+                break;
+            case "sonic":
+                Debug.Log("sonic");
+                break;
         }
     }
 
