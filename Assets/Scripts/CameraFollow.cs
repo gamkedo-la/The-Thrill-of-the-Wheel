@@ -33,4 +33,8 @@ public class CameraFollow : MonoBehaviour
         Quaternion rot = Quaternion.LookRotation(direction, Vector3.up);
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, rotationSpeed * Time.deltaTime);
     }
+
+    public void ChangeCameraTarget(Transform carTransform) {
+        target = carTransform;
+    }
 }

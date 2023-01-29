@@ -1236,6 +1236,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4f9a0a4cdbf4ca47ae21540874d78ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  carName: {fileID: 714624028}
 --- !u!1 &875708129
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,9 +4,16 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    [Header("Win Conditions")]
+
     [SerializeField] private GameObject[] _enemies;
     [SerializeField] private GameObject[] _structuresToProtect;
     [SerializeField] private GameObject[] _structuresToDestroy;
+    [Header("Scene Management")]
+    [SerializeField] private GameObject _boatTank;
+    [SerializeField] private GameObject _armadillo;
+    [SerializeField] private CameraFollow _camera;
+
     private static GameManager _instance;
     public static GameManager Instance
     {
@@ -31,6 +38,25 @@ public class GameManager : MonoBehaviour
     void Awake()
     {
         _instance = this;
+        string selectedCar = PlayerPrefs.GetString("SelectedCar");
+        switch (selectedCar)
+        {
+            case "Tank Boat":
+                Debug.Log("asd");
+                _boatTank.SetActive(true);
+                _camera.ChangeCameraTarget(_boatTank.transform);
+                break;
+            case "Armadillo":
+                Debug.Log("armadillo");
+                _armadillo.SetActive(true);
+                _camera.ChangeCameraTarget(_armadillo.transform);
+                break;
+            default:
+                _camera.ChangeCameraTarget(_boatTank.transform);
+                _boatTank.SetActive(true);
+                break;
+        }
+        Debug.Log(selectedCar);
     }
 
     void CheckWinCondition () {
