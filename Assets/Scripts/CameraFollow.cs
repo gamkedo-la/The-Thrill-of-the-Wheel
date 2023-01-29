@@ -9,6 +9,7 @@ public class CameraFollow : MonoBehaviour
     [SerializeField] private Transform target;
     [SerializeField] private float translateSpeed;
     [SerializeField] private float rotationSpeed;
+    [SerializeField] private float _minYPosition;
 
     public float TranslateSpeed { get => translateSpeed; set => translateSpeed = value; }
 
@@ -17,13 +18,16 @@ public class CameraFollow : MonoBehaviour
         HandleRotation();
     }
 
-    private void HandleRotation()
+    private void HandleTranslation()
     {
         Vector3 targetPos = target.TransformPoint(offset);
         transform.position = Vector3.Lerp(transform.position, targetPos, translateSpeed * Time.deltaTime);
+        if (transform.position.y < _minYPosition) {
+            transform.position = new Vector3(transform.position.x, _minYPosition, transform.position.z);
+        }
     }
 
-    private void HandleTranslation()
+    private void HandleRotation()
     {
         Vector3 direction = target.position - transform.position;
         Quaternion rot = Quaternion.LookRotation(direction, Vector3.up);
