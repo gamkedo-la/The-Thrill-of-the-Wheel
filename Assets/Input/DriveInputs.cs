@@ -107,6 +107,15 @@ public partial class @DriveInputs : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Unstuck"",
+                    ""type"": ""Button"",
+                    ""id"": ""40ebfc68-7d3f-4d9b-945d-6cd482126227"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -459,6 +468,17 @@ public partial class @DriveInputs : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""FireAlternative"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8b2054a9-ecf9-4ae7-9c24-f010f517dc58"",
+                    ""path"": ""<Keyboard>/u"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Unstuck"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1055,6 +1075,7 @@ public partial class @DriveInputs : IInputActionCollection2, IDisposable
         m_Player_Menu = m_Player.FindAction("Menu", throwIfNotFound: true);
         m_Player_FireSpecial = m_Player.FindAction("FireSpecial", throwIfNotFound: true);
         m_Player_FireAlternative = m_Player.FindAction("FireAlternative", throwIfNotFound: true);
+        m_Player_Unstuck = m_Player.FindAction("Unstuck", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1135,6 +1156,7 @@ public partial class @DriveInputs : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Menu;
     private readonly InputAction m_Player_FireSpecial;
     private readonly InputAction m_Player_FireAlternative;
+    private readonly InputAction m_Player_Unstuck;
     public struct PlayerActions
     {
         private @DriveInputs m_Wrapper;
@@ -1148,6 +1170,7 @@ public partial class @DriveInputs : IInputActionCollection2, IDisposable
         public InputAction @Menu => m_Wrapper.m_Player_Menu;
         public InputAction @FireSpecial => m_Wrapper.m_Player_FireSpecial;
         public InputAction @FireAlternative => m_Wrapper.m_Player_FireAlternative;
+        public InputAction @Unstuck => m_Wrapper.m_Player_Unstuck;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1184,6 +1207,9 @@ public partial class @DriveInputs : IInputActionCollection2, IDisposable
                 @FireAlternative.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFireAlternative;
                 @FireAlternative.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFireAlternative;
                 @FireAlternative.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFireAlternative;
+                @Unstuck.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUnstuck;
+                @Unstuck.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUnstuck;
+                @Unstuck.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUnstuck;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1215,6 +1241,9 @@ public partial class @DriveInputs : IInputActionCollection2, IDisposable
                 @FireAlternative.started += instance.OnFireAlternative;
                 @FireAlternative.performed += instance.OnFireAlternative;
                 @FireAlternative.canceled += instance.OnFireAlternative;
+                @Unstuck.started += instance.OnUnstuck;
+                @Unstuck.performed += instance.OnUnstuck;
+                @Unstuck.canceled += instance.OnUnstuck;
             }
         }
     }
@@ -1380,6 +1409,7 @@ public partial class @DriveInputs : IInputActionCollection2, IDisposable
         void OnMenu(InputAction.CallbackContext context);
         void OnFireSpecial(InputAction.CallbackContext context);
         void OnFireAlternative(InputAction.CallbackContext context);
+        void OnUnstuck(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

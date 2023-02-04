@@ -68,6 +68,7 @@ public class CarController : MonoBehaviour
         _movementAction = _driveInputs.Player.Move;
         _brakeAction = _driveInputs.Player.HandBrake;
         _driveInputs.Player.FireSpecial.performed += FireSpecial;
+        _driveInputs.Player.Unstuck.performed += UnstuckCar;
         _weaponInventory = GetComponent<WeaponInventory>();
     }
 
@@ -76,6 +77,7 @@ public class CarController : MonoBehaviour
         _movementAction.Enable();
         _brakeAction.Enable();
         _driveInputs.Player.FireSpecial.Enable();
+        _driveInputs.Player.Unstuck.Enable();
     }
 
     private void OnDisable()
@@ -83,6 +85,7 @@ public class CarController : MonoBehaviour
         _movementAction.Disable();
         _brakeAction.Disable();
         _driveInputs.Player.FireSpecial.Disable();
+        _driveInputs.Player.Unstuck.Disable();
     }
 
     void Update()
@@ -209,4 +212,11 @@ public class CarController : MonoBehaviour
 
         specialWeapon();
     }
+
+
+    private void UnstuckCar(InputAction.CallbackContext obj)
+    {
+        _rb.velocity = Vector3.zero;
+        GameManager._instance.RespawnCar(transform);
+    }    
 }

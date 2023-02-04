@@ -13,8 +13,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject _boatTank;
     [SerializeField] private GameObject _armadillo;
     [SerializeField] private CameraFollow _camera;
+    [SerializeField] private Transform _respawnPoints;
 
-    private static GameManager _instance;
+    public static GameManager _instance;
     public static GameManager Instance
     {
         get
@@ -96,5 +97,19 @@ public class GameManager : MonoBehaviour
         if(structuresProtected == numberOfStructures) return true;
 
         return false;
+    }
+
+    public void RespawnCar(Transform stuckPosition) {
+        float minDistance = float.MaxValue;
+        Vector3 respawnPosition = new Vector3(0, 0.5f, 0);
+        foreach (Transform children in _respawnPoints)
+        {
+            float newDistance = Vector3.Distance(stuckPosition.position, children.position);
+            if(newDistance < minDistance) {
+                minDistance = newDistance;
+                respawnPosition = children.position;
+            }
+        }
+        stuckPosition.position = respawnPosition;
     }
 }
