@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class HealthPack : MonoBehaviour
 {
-    public float healthPack = 25f;
+    public int healthPack = 25;
 
     void OnTriggerEnter(Collider col)
     {
-        Destroy(gameObject);
+        if(col.CompareTag("Player")) {
+            col.GetComponent<HealthController>().ChangeLife(healthPack);
+            Destroy(gameObject);
+        }
     }
 }
