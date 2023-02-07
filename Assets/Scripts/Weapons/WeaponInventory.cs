@@ -25,8 +25,10 @@ public class WeaponInventory : MonoBehaviour
     public event Action<string, int> onSwitchWeapon;
 
     // Weapon variables
-    public Transform gunPoint;
+    public Transform gunPoint;    
     public GameObject missilePrefab;
+    [SerializeField] Transform barrelPoint;
+    [SerializeField] Transform barrelPrefab;
     
     // Start is called before the first frame update
     private void Awake() {
@@ -146,7 +148,7 @@ public class WeaponInventory : MonoBehaviour
                 Debug.Log("turret");
                 break;
             case "barrel":
-                Debug.Log("barrel");
+                Instantiate(barrelPrefab, barrelPoint.position, Quaternion.identity);
                 break;
             case "sonic":
                 Debug.Log("sonic");
