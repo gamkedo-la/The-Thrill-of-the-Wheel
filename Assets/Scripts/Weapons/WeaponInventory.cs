@@ -151,7 +151,7 @@ public class WeaponInventory : MonoBehaviour
                 Instantiate(barrelPrefab, barrelPoint.position, Quaternion.identity);
                 break;
             case "sonic":
-                Debug.Log("sonic");
+                gameObject.GetComponent<SonicBlast>().Fire();
                 break;
         }
     }

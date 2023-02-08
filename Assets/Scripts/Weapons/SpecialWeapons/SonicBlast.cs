@@ -4,7 +4,7 @@ using UnityEngine;
 using System.Linq;
 using System;
 
-public class SonicBlast : MonoBehaviour, ISpecialWeapon
+public class SonicBlast : MonoBehaviour
 {
 
     private struct BlastTarget
@@ -27,11 +27,8 @@ public class SonicBlast : MonoBehaviour, ISpecialWeapon
     List<BlastTarget> blastTargets;
     List<BlastTarget> activatedTargets;
 
-    CarController carController;
 
-    public CarController CarController { get => carController; }
-
-    LayerMask layerMask;
+    [SerializeField] LayerMask layerMask;
 
     public void Fire()
     {
@@ -41,7 +38,6 @@ public class SonicBlast : MonoBehaviour, ISpecialWeapon
             return;
         }
 
-        Debug.Log("Sonic Blast!!");
         currentCooldownTime = 0;
         firing = true;
 
@@ -53,7 +49,7 @@ public class SonicBlast : MonoBehaviour, ISpecialWeapon
         if(numHits > 0){
             foreach (var hit in hitColliders)
             {
-                if(hit == null || hit.attachedRigidbody == null || hit.tag == "Player"){
+                if(hit == null || hit.attachedRigidbody == null){
                     continue;
                 }
                 blastTargets.Add(new BlastTarget{
@@ -68,10 +64,6 @@ public class SonicBlast : MonoBehaviour, ISpecialWeapon
         }
     }
 
-    public void RegisterWeapon()
-    {
-        CarController.RegisterWeapon(Fire);
-    }
 
     void Awake()
     {
@@ -81,12 +73,6 @@ public class SonicBlast : MonoBehaviour, ISpecialWeapon
         layerMask = LayerMask.GetMask("EnemyCar");
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        carController = GetComponent<CarController>();
-        RegisterWeapon();
-    }
 
     // Update is called once per frame
     void Update()
@@ -110,7 +96,6 @@ public class SonicBlast : MonoBehaviour, ISpecialWeapon
         foreach (var target in blastTargets)
         {
             if(currentRadius > target.Distance){
-                Debug.Log($"Hit {target.Target.name}");
                 StartCoroutine(ApplyForceToTarget(target));
             }
         }
@@ -126,18 +111,10 @@ public class SonicBlast : MonoBehaviour, ISpecialWeapon
     private IEnumerator ApplyForceToTarget(BlastTarget target)
     {
         activatedTargets.Add(target);
-
         target.Rigidbody.AddForce(new Vector3(0,upwardsEffect,0),ForceMode.Impulse);
+
         yield return new WaitForSeconds(0.1f);
         target.Rigidbody.AddExplosionForce(force,transform.position,maxSize,0,ForceMode.Impulse);
-
-        /* Vector3 forceDir = (target.Target.transform.position - transform.position).normalized;
-
-
-        Vector3 forceVector = forceDir * force;
-
-        forceVector.y = upwardsEffect;  */
-
     }
 
     void OnDrawGizmosSelected()
