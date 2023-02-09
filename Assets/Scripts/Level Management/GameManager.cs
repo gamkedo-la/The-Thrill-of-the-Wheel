@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     [Header("Scene Management")]
     [SerializeField] private GameObject _boatTank;
     [SerializeField] private GameObject _armadillo;
+    [SerializeField] private GameObject _armoredTruck;
     [SerializeField] private CameraFollow _camera;
     [SerializeField] private Transform _respawnPoints;
 
@@ -51,6 +52,11 @@ public class GameManager : MonoBehaviour
                 Debug.Log("armadillo");
                 _armadillo.SetActive(true);
                 _camera.ChangeCameraTarget(_armadillo.transform);
+                break;
+            case "Armored Truck":
+                Debug.Log("Armored Truck");
+                _armoredTruck.SetActive(true);
+                _camera.ChangeCameraTarget(_armoredTruck.transform);
                 break;
             default:
                 _camera.ChangeCameraTarget(_boatTank.transform);
