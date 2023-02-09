@@ -41,28 +41,34 @@ public class GameManager : MonoBehaviour
     {
         _instance = this;
         string selectedCar = PlayerPrefs.GetString("SelectedCar");
+        
+        // Initial declaration handles default case.
+        var carInstance = _boatTank;
+        
         switch (selectedCar)
         {
             case "Tank Boat":
                 Debug.Log("asd");
                 _boatTank.SetActive(true);
-                _camera.ChangeCameraTarget(_boatTank.transform);
                 break;
             case "Armadillo":
                 Debug.Log("armadillo");
-                _armadillo.SetActive(true);
-                _camera.ChangeCameraTarget(_armadillo.transform);
+                carInstance = _armadillo;
                 break;
             case "Armored Truck":
+                carInstance = _armoredTruck;
                 Debug.Log("Armored Truck");
-                _armoredTruck.SetActive(true);
-                _camera.ChangeCameraTarget(_armoredTruck.transform);
-                break;
-            default:
-                _camera.ChangeCameraTarget(_boatTank.transform);
-                _boatTank.SetActive(true);
                 break;
         }
+
+        // Set selected car active.
+        carInstance.SetActive(true);
+        
+        // Set camera to follow CameraTarget transform. Fall back to car transform
+        // if no component is found.
+        var cameraTarget = carInstance.GetComponentInChildren<CameraTarget>();
+        _camera.ChangeCameraTarget(cameraTarget ? cameraTarget.transform : carInstance.transform);
+        
         Debug.Log(selectedCar);
     }
 
