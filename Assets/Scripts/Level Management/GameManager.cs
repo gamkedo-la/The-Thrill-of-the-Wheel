@@ -44,21 +44,31 @@ public class GameManager : MonoBehaviour
         
         // Initial declaration handles default case.
         var carInstance = _boatTank;
+        Transform selectedCarTransform = _boatTank.transform;
         
         switch (selectedCar)
         {
             case "Tank Boat":
-                Debug.Log("asd");
+                Debug.Log("Tank Boat");
                 _boatTank.SetActive(true);
+                selectedCarTransform = _boatTank.transform;
                 break;
             case "Armadillo":
                 Debug.Log("armadillo");
                 carInstance = _armadillo;
+                selectedCarTransform = _armadillo.transform;
                 break;
             case "Armored Truck":
                 carInstance = _armoredTruck;
+                selectedCarTransform = _armoredTruck.transform;
                 Debug.Log("Armored Truck");
                 break;
+        }
+
+        foreach (GameObject enemy in _enemies)
+        {
+            enemy.GetComponent<randomDriverAI>().AI_target = selectedCarTransform;
+            enemy.GetComponent<EnemyWeapons>().SetTarget(selectedCarTransform);
         }
 
         // Set selected car active.
@@ -68,8 +78,6 @@ public class GameManager : MonoBehaviour
         // if no component is found.
         var cameraTarget = carInstance.GetComponentInChildren<CameraTarget>();
         _camera.ChangeCameraTarget(cameraTarget ? cameraTarget.transform : carInstance.transform);
-        
-        Debug.Log(selectedCar);
     }
 
     void CheckWinCondition () {

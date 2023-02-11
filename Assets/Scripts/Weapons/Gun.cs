@@ -21,25 +21,28 @@ public class Gun : MonoBehaviour
     // Input variables
     private DriveInputs _driveInputs;
 
-    private Animator _anim;
     private float _lastShootTime;
 
     private void Awake() {
-        _anim = GetComponent<Animator>();
-        _driveInputs = new DriveInputs();
-        _driveInputs.Player.FireRegular.performed += Shoot;
+        if(gameObject.CompareTag("Player")) {
+            _driveInputs = new DriveInputs();
+            _driveInputs.Player.FireRegular.performed += PlayerShoot;
+        }       
     }
 
     private void OnEnable() {
-        _driveInputs.Player.FireRegular.Enable();
+        if(gameObject.CompareTag("Player")) {
+            _driveInputs.Player.FireRegular.Enable();
+        } 
     }
 
     private void OnDisable() {
-        _driveInputs.Player.FireRegular.Disable();
+        if(gameObject.CompareTag("Player")) {
+            _driveInputs.Player.FireRegular.Disable();
+        } 
     }
 
-    private void Shoot(InputAction.CallbackContext obj)
-    {
+    public void AttemptShoot() {
         if(_lastShootTime + _shootDelay < Time.time) {
             RaycastHit hit;
 
@@ -57,6 +60,11 @@ public class Gun : MonoBehaviour
                 // Debug.Log(hit.transform.name);
             }
         }
+    }
+
+    private void PlayerShoot(InputAction.CallbackContext obj)
+    {
+        AttemptShoot();
     }
 
     private Vector3 GetDirection()
@@ -85,7 +93,6 @@ public class Gun : MonoBehaviour
             yield return null;
         }
 
-        // _anim.SetBool("isShooting", false);
         // Instantiate(_impactSystem, hit.point, Quaternion.LookRotation(hit.normal));
 
         Destroy(trail.gameObject, trail.time);
