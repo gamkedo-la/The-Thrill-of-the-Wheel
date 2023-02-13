@@ -67,7 +67,9 @@ public class GameManager : MonoBehaviour
 
         foreach (GameObject enemy in _enemies)
         {
-            enemy.GetComponent<randomDriverAI>().AI_target = selectedCarTransform;
+            randomDriverAI enemyAI = enemy.GetComponent<randomDriverAI>();
+            enemyAI.AI_target = selectedCarTransform;
+            enemyAI.player = selectedCarTransform;
             enemy.GetComponent<EnemyWeapons>().SetTarget(selectedCarTransform);
         }
 
