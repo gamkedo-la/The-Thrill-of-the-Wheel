@@ -323,9 +323,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ce40e2ba8c81fb40a0a698ef7432267, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapons: []
-  gunPoint: {fileID: 0}
-  missilePrefab: {fileID: 0}
+  weapons:
+  - name: 
+    currentAmmo: 0
+  gunPoint: {fileID: 8309589988458931314}
+  missilePrefab: {fileID: 1707675418004871331}
   barrelPoint: {fileID: 0}
   barrelPrefab: {fileID: 0}
 --- !u!1 &4653240838568539186
@@ -5463,6 +5465,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b5649188b5dcb7944a239d0838463032, type: 3}
+--- !u!1 &1707675418004871331 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -8651461303583510407, guid: b5649188b5dcb7944a239d0838463032, type: 3}
+  m_PrefabInstance: {fileID: 1179156361435752666}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1717996865086574385 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b5649188b5dcb7944a239d0838463032, type: 3}
