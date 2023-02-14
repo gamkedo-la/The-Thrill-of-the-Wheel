@@ -153,7 +153,6 @@ public class randomDriverAI : MonoBehaviour
     {
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
         float distanceToObjective = Vector3.Distance(transform.position, objective.position);
-        Debug.Log($"{distanceToPlayer} {distanceToObjective} {AI_target.tag}");
         // These conditions could be improved if time permits it
         if(distanceToObjective < distanceToPlayer && AI_target.CompareTag("Player")) {
             AI_target = objective;

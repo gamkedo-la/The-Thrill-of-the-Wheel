@@ -14,7 +14,8 @@ public class Turret : MonoBehaviour
 
     private void Start()
     {
-        playerTransform = FindObjectOfType<CarController>().transform;   
+        
+        playerTransform = GameManager._instance.GetClosestEnemy();   
                         //could replace this with a public function that sets target
                         //On Trigger Enter if there is multiple targets
         currentTurretGun = GetComponentInChildren<TurretGun>();
@@ -42,12 +43,13 @@ public class Turret : MonoBehaviour
         transform.rotation = Quaternion.LookRotation(newLookDirection);
 
         fireRateDelta -= Time.deltaTime;
+    }
+
+    public void FireTurret() {
         if(fireRateDelta <= 0)
         {
             currentTurretGun.Fire();
-            fireRateDelta = fireRate;
         }
-        
     }
 
     private void OnDrawGizmosSelected()

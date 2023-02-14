@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject[] _enemies;
     [SerializeField] private GameObject[] _structuresToProtect;
     [SerializeField] private GameObject[] _structuresToDestroy;
+    [SerializeField] private Transform _player;
     [Header("Scene Management")]
     [SerializeField] private GameObject _boatTank;
     [SerializeField] private GameObject _armadillo;
@@ -33,8 +34,21 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public GameObject[] GetEnemies () {
-        return _enemies;
+    public Transform GetClosestEnemy () {
+        float minDistance = float.PositiveInfinity;
+        Transform closestEnemy = _enemies[0].transform;
+        foreach (GameObject enemy in _enemies)
+        {
+            if(enemy.activeInHierarchy) {
+                Vector3 enemyPosition = enemy.transform.position;
+                float distanceToEnemy = Vector3.Distance(_player.position, enemyPosition);
+                if( distanceToEnemy < minDistance) {
+                    minDistance = distanceToEnemy;
+                    closestEnemy = enemy.transform;
+                }
+            }
+        }
+        return closestEnemy;
     }
 
     void Awake()
@@ -72,6 +86,7 @@ public class GameManager : MonoBehaviour
             enemyAI.player = selectedCarTransform;
             enemy.GetComponent<EnemyWeapons>().SetTarget(selectedCarTransform);
         }
+        _player = selectedCarTransform;
 
         // Set selected car active.
         carInstance.SetActive(true);

@@ -29,6 +29,7 @@ public class WeaponInventory : MonoBehaviour
     public GameObject missilePrefab;
     [SerializeField] Transform barrelPoint;
     [SerializeField] Transform barrelPrefab;
+    [SerializeField] GameObject turret;
     
     // Start is called before the first frame update
     private void Awake() {
@@ -92,6 +93,9 @@ public class WeaponInventory : MonoBehaviour
     void AddNewWeapon(string name) {
         int ammo = _weaponAmmoAddValues[name];
         WeaponStruct newWeapon = new WeaponStruct(name, ammo);
+        if(name == "turret") {
+            turret.SetActive(true);
+        }
         weapons.Add(newWeapon);
         if(equipedWeaponIndex == -1) {
             UpdateEquipedWeapon(0);
@@ -103,6 +107,9 @@ public class WeaponInventory : MonoBehaviour
         WeaponStruct temp = weapons[equipedWeaponIndex];
         temp.currentAmmo --;
         if (temp.currentAmmo < 1) {
+            if(temp.name == "turret") {
+                turret.SetActive(false);
+            }
             weapons.RemoveAt(equipedWeaponIndex);
             int newIndex = equipedWeaponIndex - 1;
             if(newIndex == -1 && weapons.Count > 0) {
@@ -115,22 +122,7 @@ public class WeaponInventory : MonoBehaviour
         }
     }
 
-    Transform GetClosestEnemy (GameObject[] enemies) {
-        float minDistance = float.PositiveInfinity;
-        Transform closestEnemy = enemies[0].transform;
-        foreach (GameObject enemy in enemies)
-        {
-            if(enemy.activeInHierarchy) {
-                Vector3 enemyPosition = enemy.transform.position;
-                float distanceToEnemy = Vector3.Distance(transform.position, enemyPosition);
-                if( distanceToEnemy < minDistance) {
-                    minDistance = distanceToEnemy;
-                    closestEnemy = enemy.transform;
-                }
-            }
-        }
-        return closestEnemy;
-    }
+    
 
     void FireEquippedWeapon (InputAction.CallbackContext obj) {
         if(weapons.Count < 1) return;
@@ -139,13 +131,12 @@ public class WeaponInventory : MonoBehaviour
         switch (currentWeapon)
         {
             case "missiles":
-                GameObject[] enemies = GameManager.Instance.GetEnemies();
-                Transform closestEnemy = GetClosestEnemy(enemies);
+                Transform closestEnemy = GameManager.Instance.GetClosestEnemy();
                 GameObject Missile = Instantiate(missilePrefab, gunPoint.position, Quaternion.identity);
                 Missile.GetComponent<HomingMissile>().SetTarget(closestEnemy);
                 break;
             case "turret":
-                Debug.Log("turret");
+                turret.GetComponent<Turret>().FireTurret();
                 break;
             case "barrel":
                 Instantiate(barrelPrefab, barrelPoint.position, Quaternion.identity);
