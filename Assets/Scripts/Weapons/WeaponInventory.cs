@@ -97,7 +97,7 @@ public class WeaponInventory : MonoBehaviour
             turret.SetActive(true);
         }
         weapons.Add(newWeapon);
-        if(equipedWeaponIndex == -1) {
+        if(equipedWeaponIndex == -1 && gameObject.CompareTag("Player")) { // Only Update ui if player
             UpdateEquipedWeapon(0);
         }
     }

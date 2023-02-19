@@ -52,7 +52,7 @@ GameObject:
   - component: {fileID: 4869275978033347407}
   m_Layer: 0
   m_Name: AI car
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -87,6 +87,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AI_target: {fileID: 0}
+  player: {fileID: 0}
+  objective: {fileID: 0}
   slowDownWhenThisClose: 10
   _maxAcceleration: 20
   _brakeAcceleration: 150
@@ -132,8 +134,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.9401898, y: 0.9151983, z: 5.8281803}
-  m_Center: {x: -0.024751425, y: 0.683354, z: 0.012357712}
+  m_Size: {x: 2.9401898, y: 1.6490403, z: 5.8281803}
+  m_Center: {x: -0.024751425, y: 0.316433, z: 0.012357712}
 --- !u!114 &4869275978033347404
 MonoBehaviour:
   m_ObjectHideFlags: 0
