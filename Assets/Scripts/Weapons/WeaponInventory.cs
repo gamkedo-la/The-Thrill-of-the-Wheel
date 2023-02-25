@@ -153,7 +153,31 @@ public class WeaponInventory : MonoBehaviour
         UseWeapon();
     }
 
-    void UpdateEquipedWeapon (int newIndex) {
+    public void FireEquippedWeaponEnemy (Transform playerTransform) {
+        if(weapons.Count < 1) return;
+
+        string currentWeapon = weapons[equipedWeaponIndex].name;
+        switch (currentWeapon)
+        {
+            case "missiles":
+                Transform closestEnemy = playerTransform;
+                GameObject Missile = Instantiate(missilePrefab, gunPoint.position, Quaternion.identity);
+                Missile.GetComponent<HomingMissile>().SetTarget(closestEnemy);
+                break;
+            case "turret":
+                turret.GetComponent<Turret>().FireTurret();
+                break;
+            case "barrel":
+                Instantiate(barrelPrefab, barrelPoint.position, Quaternion.identity);
+                break;
+            case "sonic":
+                gameObject.GetComponent<SonicBlast>().Fire();
+                break;
+        }
+        UseWeapon();
+    }
+
+    public void UpdateEquipedWeapon (int newIndex) {
         equipedWeaponIndex = newIndex;
         if(gameObject.CompareTag("Player")) { // Only Update UI if player
             if(newIndex == -1) {
@@ -180,7 +204,7 @@ public class WeaponInventory : MonoBehaviour
         UpdateEquipedWeapon(newIndex);
     }
     
-    public int HasWeapon(string name)
+    public int GetWeaponIndex(string name)
     {
         return weapons.FindIndex((weapon) => weapon.name == name);
     }
