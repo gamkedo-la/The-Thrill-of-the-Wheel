@@ -30,6 +30,8 @@ public class WeaponInventory : MonoBehaviour
     [SerializeField] Transform barrelPoint;
     [SerializeField] Transform barrelPrefab;
     [SerializeField] GameObject turret;
+    float fireCooldown = 4f;
+    float currentCooldown = 0;
     
     // Start is called before the first frame update
     private void Awake() {
@@ -75,6 +77,15 @@ public class WeaponInventory : MonoBehaviour
             {"sonic", 9},
         };
         equipedWeaponIndex = -1;
+    }
+
+    private void Update() {
+        if(currentCooldown > 0) {
+            currentCooldown -= Time.deltaTime;
+            if(currentCooldown < 0) {
+                currentCooldown = 0;
+            }
+        }
     }
 
     public void PickWeapon(string name) {
@@ -154,7 +165,9 @@ public class WeaponInventory : MonoBehaviour
     }
 
     public void FireEquippedWeaponEnemy (Transform playerTransform) {
-        if(weapons.Count < 1) return;
+        if(weapons.Count < 1 || currentCooldown > 0) return;
+        currentCooldown = fireCooldown;
+
 
         string currentWeapon = weapons[equipedWeaponIndex].name;
         switch (currentWeapon)
@@ -207,5 +220,9 @@ public class WeaponInventory : MonoBehaviour
     public int GetWeaponIndex(string name)
     {
         return weapons.FindIndex((weapon) => weapon.name == name);
+    }
+
+    public bool HasWeapons() {
+        return weapons.Count > 0;
     }
 }
