@@ -32,7 +32,6 @@ public class SonicBlast : MonoBehaviour
 
     public void Fire()
     {
-
         if (currentCooldownTime < coolDownTime)
         {
             return;
@@ -45,7 +44,7 @@ public class SonicBlast : MonoBehaviour
         Collider[] hitColliders = new Collider[maxColliders];
         
         int numHits = Physics.OverlapSphereNonAlloc(transform.position, maxSize, hitColliders,layerMask);
-
+        
         if(numHits > 0){
             foreach (var hit in hitColliders)
             {
@@ -70,7 +69,7 @@ public class SonicBlast : MonoBehaviour
         blastTargets = new List<BlastTarget>();
         activatedTargets = new List<BlastTarget>();
         currentCooldownTime = coolDownTime;
-        layerMask = LayerMask.GetMask("EnemyCar");
+        layerMask = gameObject.CompareTag("Player") ? LayerMask.GetMask("EnemyCar") : LayerMask.GetMask("PlayerCar");
     }
 
 

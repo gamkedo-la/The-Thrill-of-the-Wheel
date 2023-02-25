@@ -31,27 +31,33 @@ public class EnemyWeapons : MonoBehaviour
             int sonicIndex = weaponInventory.GetWeaponIndex("sonic");
 
             if(missileIndex != -1) {
-                Debug.Log("Has Missile");
+                // missiles are always shot if available
                 weaponInventory.UpdateEquipedWeapon(missileIndex);
                 weaponInventory.FireEquippedWeaponEnemy(_player);
             }
 
             if(barrelIndex != -1) {
-                Debug.Log("Has Barrel");
-                weaponInventory.UpdateEquipedWeapon(barrelIndex);
-                weaponInventory.FireEquippedWeaponEnemy(_player);
+                Vector3 toTarget = (_player.position - transform.position).normalized;
+                // player is behind car
+                if (Vector3.Dot(toTarget, transform.forward) < 0) {
+                    weaponInventory.UpdateEquipedWeapon(barrelIndex);
+                    weaponInventory.FireEquippedWeaponEnemy(_player);
+                }
             }
 
             if(turretIndex != -1) {
-                Debug.Log("Has Turret");
-                weaponInventory.UpdateEquipedWeapon(turretIndex);
-                weaponInventory.FireEquippedWeaponEnemy(_player);
+                if(distanceToTarget < 13) {
+                    weaponInventory.UpdateEquipedWeapon(turretIndex);
+                    weaponInventory.FireEquippedWeaponEnemy(_player);
+                }
             }
 
             if(sonicIndex != -1) {
-                Debug.Log("Has Sonic");
-                weaponInventory.UpdateEquipedWeapon(sonicIndex);
-                weaponInventory.FireEquippedWeaponEnemy(_player);
+                Debug.Log("has Sonic");
+                if(distanceToTarget < 5) {
+                    weaponInventory.UpdateEquipedWeapon(sonicIndex);
+                    weaponInventory.FireEquippedWeaponEnemy(_player);
+                }
             }
         }
     }
