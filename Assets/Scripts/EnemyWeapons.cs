@@ -53,8 +53,7 @@ public class EnemyWeapons : MonoBehaviour
             }
 
             if(sonicIndex != -1) {
-                Debug.Log("has Sonic");
-                if(distanceToTarget < 5) {
+                if(distanceToTarget < 10) {
                     weaponInventory.UpdateEquipedWeapon(sonicIndex);
                     weaponInventory.FireEquippedWeaponEnemy(_player);
                 }
