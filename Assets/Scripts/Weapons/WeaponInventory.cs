@@ -33,25 +33,30 @@ public class WeaponInventory : MonoBehaviour
     
     // Start is called before the first frame update
     private void Awake() {
-        _driveInputs = new DriveInputs();
+        if(gameObject.CompareTag("Player")) {
+            _driveInputs = new DriveInputs();
+        }
     }
 
     private void OnEnable() {
-        _driveInputs.Player.SwitchWeaponLeft.performed += SwitchWeapon;
-        _driveInputs.Player.SwitchWeaponLeft.Enable();
+        if(gameObject.CompareTag("Player")) { // Only Update UI if player
+            _driveInputs.Player.SwitchWeaponLeft.performed += SwitchWeapon;
+            _driveInputs.Player.SwitchWeaponLeft.Enable();
 
-        _driveInputs.Player.SwitchWeaponRight.performed += SwitchWeapon;
-        _driveInputs.Player.SwitchWeaponRight.Enable();
+            _driveInputs.Player.SwitchWeaponRight.performed += SwitchWeapon;
+            _driveInputs.Player.SwitchWeaponRight.Enable();
 
-        _driveInputs.Player.FireAlternative.performed += FireEquippedWeapon;
-        _driveInputs.Player.FireAlternative.Enable();
-
+            _driveInputs.Player.FireAlternative.performed += FireEquippedWeapon;
+            _driveInputs.Player.FireAlternative.Enable();
+        }
     }
 
     private void OnDisable() {
-        _driveInputs.Player.SwitchWeaponLeft.Disable();
-        _driveInputs.Player.SwitchWeaponRight.Disable();
-        _driveInputs.Player.FireAlternative.Disable();
+        if(gameObject.CompareTag("Player")) { // Only Update UI if player
+            _driveInputs.Player.SwitchWeaponLeft.Disable();
+            _driveInputs.Player.SwitchWeaponRight.Disable();
+            _driveInputs.Player.FireAlternative.Disable();
+        }
     }
 
     void Start()
@@ -97,7 +102,7 @@ public class WeaponInventory : MonoBehaviour
             turret.SetActive(true);
         }
         weapons.Add(newWeapon);
-        if(equipedWeaponIndex == -1 && gameObject.CompareTag("Player")) { // Only Update ui if player
+        if(equipedWeaponIndex == -1) {
             UpdateEquipedWeapon(0);
         }
     }
@@ -145,14 +150,17 @@ public class WeaponInventory : MonoBehaviour
                 gameObject.GetComponent<SonicBlast>().Fire();
                 break;
         }
+        UseWeapon();
     }
 
     void UpdateEquipedWeapon (int newIndex) {
         equipedWeaponIndex = newIndex;
-        if(newIndex == -1) {
-            onSwitchWeapon("none", 0);
-        } else {
-            onSwitchWeapon(weapons[newIndex].name, weapons[newIndex].currentAmmo);
+        if(gameObject.CompareTag("Player")) { // Only Update UI if player
+            if(newIndex == -1) {
+                onSwitchWeapon("none", 0);
+            } else {
+                onSwitchWeapon(weapons[newIndex].name, weapons[newIndex].currentAmmo);
+            }
         }
     }
     
@@ -170,5 +178,10 @@ public class WeaponInventory : MonoBehaviour
             newIndex = isOnEdge ? equipedWeaponIndex - 1 : weapons.Count - 1;
         }
         UpdateEquipedWeapon(newIndex);
+    }
+    
+    public int HasWeapon(string name)
+    {
+        return weapons.FindIndex((weapon) => weapon.name == name);
     }
 }

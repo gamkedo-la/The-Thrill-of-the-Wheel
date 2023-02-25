@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject _armoredTruck;
     [SerializeField] private CameraFollow _camera;
     [SerializeField] private Transform _respawnPoints;
+    [SerializeField] private WeaponUI inventoryUI;
 
     public static GameManager _instance;
     public static GameManager Instance
@@ -87,6 +88,7 @@ public class GameManager : MonoBehaviour
             enemy.GetComponent<EnemyWeapons>().SetTarget(selectedCarTransform);
         }
         _player = selectedCarTransform;
+        inventoryUI.SetWeaponInventory(selectedCarTransform.GetComponent<WeaponInventory>());
 
         // Set selected car active.
         carInstance.SetActive(true);
