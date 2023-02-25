@@ -10,6 +10,7 @@ public class HomingMissile : MonoBehaviour
     [SerializeField] private float _maxTimePrediction = 5;
     private Vector3 _standardPrediction, _deviatedPrediction;
     private Rigidbody _rb;
+    const int DAMAGE = 5;
 
     private void Awake() {
         _rb = GetComponent<Rigidbody>();
@@ -41,5 +42,11 @@ public class HomingMissile : MonoBehaviour
     private void OnDrawGizmos() {
         Gizmos.color = Color.red;
         Gizmos.DrawLine(transform.position, _standardPrediction);
+    }
+
+    private void OnTriggerEnter(Collider other) {
+        if(other.CompareTag("Player")) {
+            other.GetComponent<HealthController>().ChangeLife(-DAMAGE);
+        }
     }
 }

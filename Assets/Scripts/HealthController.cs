@@ -10,7 +10,6 @@ public class HealthController : MonoBehaviour
     
     // this should be deleted later on
     private void Start() {
-        ChangeLife(-80);
     }
 
     public void ChangeLife(int change) {
