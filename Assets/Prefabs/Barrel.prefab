@@ -5017,3 +5017,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _barrelModel: {fileID: 5589620763893592370}
   _explosion: {fileID: 3590689568545033297}
+  maxSize: 20
+  force: 5000
+  upwardsEffect: 6000
