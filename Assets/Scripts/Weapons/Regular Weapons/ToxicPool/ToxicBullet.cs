@@ -5,6 +5,11 @@ using UnityEngine;
 public class ToxicBullet : MonoBehaviour
 {
     [SerializeField] GameObject _toxicPoolPrefab;
+    [SerializeField] float _bulletForce;
+    
+    public void Shoot (Vector3 forward) {
+        GetComponent<Rigidbody>().AddForce(forward * _bulletForce, ForceMode.Impulse);
+    }
 
     private void OnCollisionEnter(Collision other) {
         if(other.transform.CompareTag("Terrain")) {

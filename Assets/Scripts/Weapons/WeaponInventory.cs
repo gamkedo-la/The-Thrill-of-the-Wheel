@@ -29,6 +29,7 @@ public class WeaponInventory : MonoBehaviour
     public GameObject missilePrefab;
     [SerializeField] Transform barrelPoint;
     [SerializeField] Transform barrelPrefab;
+    [SerializeField] GameObject acidBulletPrefab;
     [SerializeField] GameObject turret;
     float fireCooldown = 4f;
     float currentCooldown = 0;
@@ -163,7 +164,8 @@ public class WeaponInventory : MonoBehaviour
                 gameObject.GetComponent<SonicBlast>().Fire();
                 break;
             case "acid":
-                Debug.Log("acid");
+                GameObject acid = Instantiate(acidBulletPrefab, gunPoint.position, Quaternion.identity);
+                acid.GetComponent<ToxicBullet>().Shoot(transform.forward);
                 break;
         }
         UseWeapon();

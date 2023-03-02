@@ -142,3 +142,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _toxicPoolPrefab: {fileID: 7264501395849498222, guid: 561abceb7ebf71641824d6bea1c06b78, type: 3}
+  _bulletForce: 30
