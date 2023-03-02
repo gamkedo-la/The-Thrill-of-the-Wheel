@@ -10,7 +10,7 @@ public class Barrel : MonoBehaviour
     [SerializeField] float maxSize;
     [SerializeField] float force;
     [SerializeField] private float upwardsEffect;
-    int BLAST_DAMAGE = 10;
+    int BLAST_DAMAGE = 30;
 
     // Start is called before the first frame update
     void Start()
@@ -35,7 +35,7 @@ public class Barrel : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other) {
-        if(other.CompareTag("Player")) {
+        if(other.CompareTag("Player") || other.CompareTag("Enemy")) {
             StartCoroutine(ApplyForceToTarget(other.gameObject));
         }
     }
@@ -46,9 +46,8 @@ public class Barrel : MonoBehaviour
         rb.AddForce(new Vector3(0,upwardsEffect,0),ForceMode.Impulse);
 
         yield return new WaitForSeconds(0.1f);
-        if(target.CompareTag("Player")) {
-            target.GetComponent<HealthController>().ChangeLife(-BLAST_DAMAGE);
-        }
+        target.GetComponent<HealthController>().ChangeLife(-BLAST_DAMAGE);
+
         rb.AddExplosionForce(force,transform.position,maxSize,0,ForceMode.Impulse);
     }
 }

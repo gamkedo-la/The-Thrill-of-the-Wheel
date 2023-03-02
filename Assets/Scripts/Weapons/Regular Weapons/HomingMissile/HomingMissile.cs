@@ -45,11 +45,11 @@ public class HomingMissile : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other) {
-        Debug.Log(other.name);
         if(other.CompareTag("Player") || other.CompareTag("Enemy")) {
-            Debug.Log(other.name);
-            other.GetComponent<HealthController>().ChangeLife(-DAMAGE);
-            Destroy(gameObject);
+            if(other.transform == _target) {
+                other.GetComponent<HealthController>().ChangeLife(-DAMAGE);
+                Destroy(gameObject);
+            }
         }
     }
 }

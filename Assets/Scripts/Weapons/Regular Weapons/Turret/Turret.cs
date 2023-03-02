@@ -48,7 +48,7 @@ public class Turret : MonoBehaviour
     public void FireTurret() {
         if(fireRateDelta <= 0)
         {
-            currentTurretGun.Fire();
+            currentTurretGun.Fire(playerTransform.position);
         }
     }
 

@@ -20,8 +20,9 @@ public class TurretGun : MonoBehaviour
         return rateOfFire;   
     }
 
-    public void Fire()
+    public void Fire(Vector3 target)
     {
-        Instantiate(projectile, turretGunPoint.position, transform.rotation);     
+        GameObject bullet = Instantiate(projectile, turretGunPoint.position, transform.rotation);
+        bullet.GetComponent<ProjectileWithoutRigidbody>().target = target;
     }
 }

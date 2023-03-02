@@ -114,7 +114,7 @@ public class SonicBlast : MonoBehaviour
         target.Rigidbody.AddForce(new Vector3(0,upwardsEffect,0),ForceMode.Impulse);
 
         yield return new WaitForSeconds(0.1f);
-        if(target.Target.CompareTag("Player")) {
+        if(target.Target.CompareTag("Player") || target.Target.CompareTag("Enemy")) {
             target.Target.GetComponent<HealthController>().ChangeLife(-BLAST_DAMAGE);
         }
         target.Rigidbody.AddExplosionForce(force,transform.position,maxSize,0,ForceMode.Impulse);

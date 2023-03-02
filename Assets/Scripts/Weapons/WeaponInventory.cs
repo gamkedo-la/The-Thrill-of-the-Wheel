@@ -194,7 +194,8 @@ public class WeaponInventory : MonoBehaviour
                 gameObject.GetComponent<SonicBlast>().Fire();
                 break;
             case "acid":
-                Debug.Log("acid");
+                GameObject acid = Instantiate(acidBulletPrefab, gunPoint.position, Quaternion.identity);
+                acid.GetComponent<ToxicBullet>().Shoot(transform.forward);
                 break;
         }
         UseWeapon();
@@ -206,7 +207,6 @@ public class WeaponInventory : MonoBehaviour
             if(newIndex == -1) {
                 onSwitchWeapon("none", 0);
             } else {
-                Debug.Log(weapons[newIndex].name);
                 onSwitchWeapon(weapons[newIndex].name, weapons[newIndex].currentAmmo);
             }
         }
@@ -215,7 +215,6 @@ public class WeaponInventory : MonoBehaviour
     public void SwitchWeapon(InputAction.CallbackContext obj)
     {
         string actionName = obj.action.name;
-        Debug.Log(actionName);
         if(weapons.Count < 2) return; // if less than 2 weapons you cant switch
         bool isOnEdge;
         int newIndex;
