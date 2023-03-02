@@ -69,12 +69,14 @@ public class WeaponInventory : MonoBehaviour
             {"barrel", 2},
             {"missiles", 5},
             {"sonic", 3},
+            {"acid", 2},
         };
         _weaponMaxAmmoValues = new Dictionary<string, int>() {
             {"turret", 20},
             {"barrel", 6},
             {"missiles", 10},
             {"sonic", 9},
+            {"acid", 5},
         };
         equipedWeaponIndex = -1;
     }
@@ -160,6 +162,9 @@ public class WeaponInventory : MonoBehaviour
             case "sonic":
                 gameObject.GetComponent<SonicBlast>().Fire();
                 break;
+            case "acid":
+                Debug.Log("acid");
+                break;
         }
         UseWeapon();
     }
@@ -186,6 +191,9 @@ public class WeaponInventory : MonoBehaviour
             case "sonic":
                 gameObject.GetComponent<SonicBlast>().Fire();
                 break;
+            case "acid":
+                Debug.Log("acid");
+                break;
         }
         UseWeapon();
     }
@@ -196,6 +204,7 @@ public class WeaponInventory : MonoBehaviour
             if(newIndex == -1) {
                 onSwitchWeapon("none", 0);
             } else {
+                Debug.Log(weapons[newIndex].name);
                 onSwitchWeapon(weapons[newIndex].name, weapons[newIndex].currentAmmo);
             }
         }
@@ -204,6 +213,7 @@ public class WeaponInventory : MonoBehaviour
     public void SwitchWeapon(InputAction.CallbackContext obj)
     {
         string actionName = obj.action.name;
+        Debug.Log(actionName);
         if(weapons.Count < 2) return; // if less than 2 weapons you cant switch
         bool isOnEdge;
         int newIndex;

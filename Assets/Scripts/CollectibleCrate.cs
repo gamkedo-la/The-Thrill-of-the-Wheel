@@ -8,12 +8,11 @@ public class CollectibleCrate : MonoBehaviour
     [SerializeField] private GameObject _crateParent;
 
     private void Awake() {
-        _weaponValues = new string[] {"turret", "barrel", "missiles", "sonic"};
+        _weaponValues = new string[] {"turret", "barrel", "missiles", "sonic", "acid"};
     }
     private void OnTriggerEnter(Collider other) {
-        Debug.Log(other.name);
         if(other.CompareTag("Player") || other.CompareTag("Enemy")) {
-            int weaponIndex = Random.Range(0,4);
+            int weaponIndex = Random.Range(0,5);
             other.GetComponent<WeaponInventory>().PickWeapon(_weaponValues[weaponIndex]);
             _crateParent.SetActive(false);
             Invoke("ReenableCrate", 2f);

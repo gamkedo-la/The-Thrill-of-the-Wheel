@@ -18,6 +18,7 @@ public class WeaponUI : MonoBehaviour
             {"barrel", 1},
             {"missiles", 2},
             {"sonic", 3},
+            {"acid", 4},
         };
     }
 
