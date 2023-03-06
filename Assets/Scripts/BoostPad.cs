@@ -17,6 +17,7 @@ public class BoostPad : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other) {
+        Debug.Log("Speed boost was hit by " + other.name);
         if(other.TryGetComponent<CarController>(out var carController)){
             carController.SetBoost();
         }

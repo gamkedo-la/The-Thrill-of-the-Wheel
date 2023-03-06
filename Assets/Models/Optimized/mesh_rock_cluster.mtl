@@ -1,0 +1,6 @@
+newmtl Rock_(white)
+map_Kd E:/git/The-Thrill-of-the-Wheel/Assets/Textures/Rocks011_1K_Color.jpg
+bump E:/git/The-Thrill-of-the-Wheel/Assets/Textures/Rocks011_1K_NormalGL.jpg
+Kd 1 1 1
+d 1
+

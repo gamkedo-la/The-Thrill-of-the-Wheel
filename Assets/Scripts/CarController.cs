@@ -162,14 +162,14 @@ public class CarController : MonoBehaviour
             Vector3 pos;
             if (_onlyRotate) {
                 _wheels[3].collider.GetWorldPose(out pos, out rot); // the third wheel will always be one of the rear ones that only rotates in the front/back axis
-                wheel.model.transform.rotation = rot;
+                if (wheel.model) wheel.model.transform.rotation = rot;
             } else if(_armadillo){
             
             } else {
                 wheel.collider.GetWorldPose(out pos, out rot);
-                wheel.model.transform.position = pos;
+                if (wheel.model) wheel.model.transform.position = pos;
                 // rot *= Quaternion.Euler(0, 0, 0); /// this is to rotate wheels in correct direction, perhaps tyler can help with it.
-                wheel.model.transform.rotation = rot;
+                if (wheel.model) wheel.model.transform.rotation = rot;
             }
             
         }

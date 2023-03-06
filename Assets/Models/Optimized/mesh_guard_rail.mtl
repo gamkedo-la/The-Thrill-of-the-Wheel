@@ -1,0 +1,11 @@
+newmtl Wood
+map_Kd E:/git/The-Thrill-of-the-Wheel/Assets/Textures/Wood073_1K_Color.jpg
+bump E:/git/The-Thrill-of-the-Wheel/Assets/Textures/Wood073_1K_NormalGL.jpg
+Kd 1 1 1
+d 1
+
+newmtl Guard_Rail
+map_Kd E:/git/The-Thrill-of-the-Wheel/Assets/Textures/guard_rail.psd
+Kd 1 1 1
+d 1
+

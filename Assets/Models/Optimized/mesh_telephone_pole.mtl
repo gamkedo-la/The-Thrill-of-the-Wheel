@@ -1,0 +1,14 @@
+newmtl Ceramic
+Kd 0.8207547 0.8027307 0.6555713
+d 1
+
+newmtl Wood
+map_Kd E:/git/The-Thrill-of-the-Wheel/Assets/Textures/Wood073_1K_Color.jpg
+bump E:/git/The-Thrill-of-the-Wheel/Assets/Textures/Wood073_1K_NormalGL.jpg
+Kd 1 1 1
+d 1
+
+newmtl Black_Wire
+Kd 0 0 0
+d 1
+
