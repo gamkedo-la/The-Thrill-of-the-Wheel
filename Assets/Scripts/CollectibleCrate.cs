@@ -16,6 +16,7 @@ public class CollectibleCrate : MonoBehaviour
             other.GetComponent<WeaponInventory>().PickWeapon(_weaponValues[weaponIndex]);
             _crateParent.SetActive(false);
             Invoke("ReenableCrate", 2f);
+            AudioManager.Instance.PlaySFX("Barrel Drop");
         }
     }
 

@@ -20,5 +20,6 @@ public class ScriptableObjectChanger : MonoBehaviour
         if (currentMapIndex > scriptableObjects.Length - 1) currentMapIndex = 0;
         
         if(carDisplay != null) carDisplay.UpdateCar((Car)scriptableObjects[currentMapIndex]);
+
     }
 }

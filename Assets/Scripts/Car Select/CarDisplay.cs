@@ -29,5 +29,6 @@ public class CarDisplay : MonoBehaviour
         if (carModel.transform.childCount > 0)
             Destroy(carModel.transform.GetChild(0).gameObject);
         Instantiate(_newCar.carModel, carModel.transform.position, carModel.transform.rotation, carModel.transform);
+
     }
 }
