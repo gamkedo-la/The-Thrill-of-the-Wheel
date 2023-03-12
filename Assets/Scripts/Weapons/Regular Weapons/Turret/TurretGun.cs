@@ -7,7 +7,8 @@ public class TurretGun : MonoBehaviour
     [SerializeField] GameObject projectile;
     [SerializeField] float rateOfFire = 1f;
 
-    [SerializeField] Transform turretGunPoint;   
+    [SerializeField] Transform turretGunPoint;
+    [SerializeField] GameObject turretParent;
 
 
     private void Start()
@@ -24,5 +25,6 @@ public class TurretGun : MonoBehaviour
     {
         GameObject bullet = Instantiate(projectile, turretGunPoint.position, transform.rotation);
         bullet.GetComponent<ProjectileWithoutRigidbody>().target = target;
+        bullet.GetComponent<ProjectileWithoutRigidbody>().origin = turretParent;
     }
 }

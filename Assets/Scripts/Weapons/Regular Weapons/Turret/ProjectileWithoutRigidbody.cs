@@ -4,6 +4,7 @@ public class ProjectileWithoutRigidbody : MonoBehaviour
 {
     [SerializeField] float projectileSpeed = 15f;
     [SerializeField] float _timeToDestroy;
+    public GameObject origin;
 
     public Vector3 target;
     const int DAMAGE = 7;
@@ -22,6 +23,9 @@ public class ProjectileWithoutRigidbody : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other) {
+        if(other.gameObject == origin) {
+            return;
+        }
         if(other.CompareTag("Player") || other.CompareTag("Enemy")) {
             other.GetComponent<HealthController>().ChangeLife(-DAMAGE);
             Destroy(gameObject);
