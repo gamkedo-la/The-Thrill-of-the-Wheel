@@ -153,14 +153,18 @@ public class WeaponInventory : MonoBehaviour
                 Transform closestEnemy = GameManager.Instance.GetClosestEnemy();
                 GameObject Missile = Instantiate(missilePrefab, gunPoint.position, Quaternion.identity);
                 Missile.GetComponent<HomingMissile>().SetTarget(closestEnemy);
+                AudioManager.Instance.PlaySFX("Missile_Shot");
                 break;
             case "turret":
                 turret.GetComponent<Turret>().FireTurret();
+                AudioManager.Instance.PlaySFX("Turret");
                 break;
             case "barrel":
+                AudioManager.Instance.PlaySFX("Barrel_Drop");
                 Instantiate(barrelPrefab, barrelPoint.position, Quaternion.identity);
                 break;
             case "sonic":
+                AudioManager.Instance.PlaySFX("Sonic_Gun");
                 gameObject.GetComponent<SonicBlast>().Fire();
                 break;
             case "acid":
@@ -183,14 +187,18 @@ public class WeaponInventory : MonoBehaviour
                 Transform closestEnemy = playerTransform;
                 GameObject Missile = Instantiate(missilePrefab, gunPoint.position, Quaternion.identity);
                 Missile.GetComponent<HomingMissile>().SetTarget(closestEnemy);
+                AudioManager.Instance.PlaySFX("Missile_Shot");
                 break;
             case "turret":
+                AudioManager.Instance.PlaySFX("Turret");
                 turret.GetComponent<Turret>().FireTurret();
                 break;
             case "barrel":
+                AudioManager.Instance.PlaySFX("Barrel_Drop");
                 Instantiate(barrelPrefab, barrelPoint.position, Quaternion.identity);
                 break;
             case "sonic":
+                AudioManager.Instance.PlaySFX("Sonic_Gun");
                 gameObject.GetComponent<SonicBlast>().Fire();
                 break;
             case "acid":

@@ -44,6 +44,8 @@ public class Gun : MonoBehaviour
 
     public void AttemptShoot() {
         if(_lastShootTime + _shootDelay < Time.time) {
+            AudioManager.Instance.PlaySFX("Vehicle_Hit");
+
             RaycastHit hit;
 
             Vector3 direction = GetDirection();
@@ -57,7 +59,10 @@ public class Gun : MonoBehaviour
             _lastShootTime = Time.time;
             if(Physics.Raycast(transform.position, direction, out hit, _range)) {
                 // Add damage logic here
-                // Debug.Log(hit.transform.name);
+                if(hit.transform.CompareTag("Enemy") || hit.transform.CompareTag("Player")){
+                    hit.transform.GetComponent<HealthController>().ChangeLife(-2);
+                    Debug.Log(hit.transform.name);
+                }
             }
         }
     }

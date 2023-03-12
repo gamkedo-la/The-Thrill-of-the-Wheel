@@ -17,7 +17,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private CameraFollow _camera;
     [SerializeField] private Transform _respawnPoints;
     [SerializeField] private WeaponUI inventoryUI;
-
     public static GameManager _instance;
     public static GameManager Instance
     {

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657815, g: 0.49641192, b: 0.57481617, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2939,6 +2939,98 @@ PrefabInstance:
     - target: {fileID: 4833027414668591130, guid: 644b311b17247e94cab5b6a3e9754cbf, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4833027414668591131, guid: 644b311b17247e94cab5b6a3e9754cbf, type: 3}
+      propertyPath: sfxSounds.Array.size
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 4833027414668591131, guid: 644b311b17247e94cab5b6a3e9754cbf, type: 3}
+      propertyPath: sfxSounds.Array.data[1].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: ec742d17c36af3a4499069ba013170da, type: 3}
+    - target: {fileID: 4833027414668591131, guid: 644b311b17247e94cab5b6a3e9754cbf, type: 3}
+      propertyPath: sfxSounds.Array.data[1].name
+      value: Barrel_Drop
+      objectReference: {fileID: 0}
+    - target: {fileID: 4833027414668591131, guid: 644b311b17247e94cab5b6a3e9754cbf, type: 3}
+      propertyPath: sfxSounds.Array.data[2].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 45ae4f69dbd5a4c408a584b26e29aae4, type: 3}
+    - target: {fileID: 4833027414668591131, guid: 644b311b17247e94cab5b6a3e9754cbf, type: 3}
+      propertyPath: sfxSounds.Array.data[2].name
+      value: Collision
+      objectReference: {fileID: 0}
+    - target: {fileID: 4833027414668591131, guid: 644b311b17247e94cab5b6a3e9754cbf, type: 3}
+      propertyPath: sfxSounds.Array.data[3].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: ae6d5d0d1f8812941aee6aa40a1628e0, type: 3}
+    - target: {fileID: 4833027414668591131, guid: 644b311b17247e94cab5b6a3e9754cbf, type: 3}
+      propertyPath: sfxSounds.Array.data[3].name
+      value: Homing_Missile
+      objectReference: {fileID: 0}
+    - target: {fileID: 4833027414668591131, guid: 644b311b17247e94cab5b6a3e9754cbf, type: 3}
+      propertyPath: sfxSounds.Array.data[4].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 2e217c34f4cfa22468ea80c58a28969b, type: 3}
+    - target: {fileID: 4833027414668591131, guid: 644b311b17247e94cab5b6a3e9754cbf, type: 3}
+      propertyPath: sfxSounds.Array.data[4].name
+      value: Laser_Sound
+      objectReference: {fileID: 0}
+    - target: {fileID: 4833027414668591131, guid: 644b311b17247e94cab5b6a3e9754cbf, type: 3}
+      propertyPath: sfxSounds.Array.data[5].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 19ac3e636de82c84bacd30244555a9bd, type: 3}
+    - target: {fileID: 4833027414668591131, guid: 644b311b17247e94cab5b6a3e9754cbf, type: 3}
+      propertyPath: sfxSounds.Array.data[5].name
+      value: Missile_Shot
+      objectReference: {fileID: 0}
+    - target: {fileID: 4833027414668591131, guid: 644b311b17247e94cab5b6a3e9754cbf, type: 3}
+      propertyPath: sfxSounds.Array.data[6].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: d54cef1b6c5212e46aca177a8b5f9d6d, type: 3}
+    - target: {fileID: 4833027414668591131, guid: 644b311b17247e94cab5b6a3e9754cbf, type: 3}
+      propertyPath: sfxSounds.Array.data[6].name
+      value: Missile_Trail
+      objectReference: {fileID: 0}
+    - target: {fileID: 4833027414668591131, guid: 644b311b17247e94cab5b6a3e9754cbf, type: 3}
+      propertyPath: sfxSounds.Array.data[7].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 52ef8e781461c134893b42f19eafbb94, type: 3}
+    - target: {fileID: 4833027414668591131, guid: 644b311b17247e94cab5b6a3e9754cbf, type: 3}
+      propertyPath: sfxSounds.Array.data[7].name
+      value: Small_Explosion
+      objectReference: {fileID: 0}
+    - target: {fileID: 4833027414668591131, guid: 644b311b17247e94cab5b6a3e9754cbf, type: 3}
+      propertyPath: sfxSounds.Array.data[8].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 52ef8e781461c134893b42f19eafbb94, type: 3}
+    - target: {fileID: 4833027414668591131, guid: 644b311b17247e94cab5b6a3e9754cbf, type: 3}
+      propertyPath: sfxSounds.Array.data[8].name
+      value: Sonic_Gun
+      objectReference: {fileID: 0}
+    - target: {fileID: 4833027414668591131, guid: 644b311b17247e94cab5b6a3e9754cbf, type: 3}
+      propertyPath: sfxSounds.Array.data[9].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 4e3b3b7787185a845a1718b9cab2e53d, type: 3}
+    - target: {fileID: 4833027414668591131, guid: 644b311b17247e94cab5b6a3e9754cbf, type: 3}
+      propertyPath: sfxSounds.Array.data[9].name
+      value: Turret
+      objectReference: {fileID: 0}
+    - target: {fileID: 4833027414668591131, guid: 644b311b17247e94cab5b6a3e9754cbf, type: 3}
+      propertyPath: sfxSounds.Array.data[10].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 36e44879f449a5242990954c11b621cd, type: 3}
+    - target: {fileID: 4833027414668591131, guid: 644b311b17247e94cab5b6a3e9754cbf, type: 3}
+      propertyPath: sfxSounds.Array.data[10].name
+      value: Vehicle_Hit
+      objectReference: {fileID: 0}
+    - target: {fileID: 4833027414668591131, guid: 644b311b17247e94cab5b6a3e9754cbf, type: 3}
+      propertyPath: sfxSounds.Array.data[11].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 1ffa5a05a71c5be4395ac9bc5b568804, type: 3}
+    - target: {fileID: 4833027414668591131, guid: 644b311b17247e94cab5b6a3e9754cbf, type: 3}
+      propertyPath: sfxSounds.Array.data[11].name
+      value: Explosion
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 644b311b17247e94cab5b6a3e9754cbf, type: 3}

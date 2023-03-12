@@ -14,6 +14,7 @@ public class HealthController : MonoBehaviour
 
     public void ChangeLife(int change) {
         _currentHealth += change;
+        Debug.Log(_currentHealth);
         float percentageChange = (float) change / _maxHealth;
         if(gameObject.CompareTag("Player")) {
             if (onHealthChange!=null) onHealthChange(percentageChange);

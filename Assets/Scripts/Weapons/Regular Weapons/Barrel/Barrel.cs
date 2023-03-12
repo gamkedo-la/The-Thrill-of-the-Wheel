@@ -47,7 +47,7 @@ public class Barrel : MonoBehaviour
 
         yield return new WaitForSeconds(0.1f);
         target.GetComponent<HealthController>().ChangeLife(-BLAST_DAMAGE);
-
+        AudioManager.Instance.PlaySFX("Explosion");
         rb.AddExplosionForce(force,transform.position,maxSize,0,ForceMode.Impulse);
     }
 }

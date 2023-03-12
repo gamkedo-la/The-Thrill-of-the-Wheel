@@ -22,6 +22,10 @@ public class HomingMissile : MonoBehaviour
         PredictMovement(leadTimePercentage);
         RotateRocket();
     }
+    
+    private void LateUpdate() {
+        AudioManager.Instance.PlaySFX("Missile_Trail");
+    }
 
     public void SetTarget(Transform target) {
         _target = target;
@@ -38,7 +42,7 @@ public class HomingMissile : MonoBehaviour
         var rotation = Quaternion.LookRotation(heading);
         _rb.MoveRotation(Quaternion.RotateTowards(transform.rotation, rotation, _rotateSpeed * Time.deltaTime));
     }
-    
+
     private void OnDrawGizmos() {
         Gizmos.color = Color.red;
         Gizmos.DrawLine(transform.position, _standardPrediction);
@@ -48,6 +52,7 @@ public class HomingMissile : MonoBehaviour
         if(other.CompareTag("Player") || other.CompareTag("Enemy")) {
             if(other.transform == _target) {
                 other.GetComponent<HealthController>().ChangeLife(-DAMAGE);
+                AudioManager.Instance.PlaySFX("Homming_Missile");
                 Destroy(gameObject);
             }
         }
