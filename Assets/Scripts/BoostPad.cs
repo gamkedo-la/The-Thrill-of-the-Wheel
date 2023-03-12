@@ -18,8 +18,17 @@ public class BoostPad : MonoBehaviour
 
     private void OnTriggerEnter(Collider other) {
         Debug.Log("Speed boost was hit by " + other.name);
-        if(other.TryGetComponent<CarController>(out var carController)){
+        
+        //we collide with a child so it never triggered
+        //if(other.TryGetComponent<CarController>(out var carController)){
+        //    carController.SetBoost();
+
+        CarController carController = other.GetComponentInParent<CarController>();
+        if (carController) {
+            Debug.Log("... and it has a car controller component! yay!");
             carController.SetBoost();
+        } else {
+            Debug.Log("...but it was not a car. Ignoring.");
         }
     }
 

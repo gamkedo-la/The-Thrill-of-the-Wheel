@@ -186,12 +186,15 @@ public class CarController : MonoBehaviour
     }
 
     public void SetBoost(){
+        Debug.Log(gameObject.name+" SPEED BOOST!");
         _boost = true;
         _currentBoostTimer = 0;
     }
 
     private void ApplyBoostForce()
     {
+        Debug.Log(gameObject.name+" applying boost force! total time = "+_currentBoostTimer);
+        // FIXME: this seems to have no effect
         _rb.AddForce(_rb.velocity.normalized * _boostMultiplier, ForceMode.Impulse);
     }
 
