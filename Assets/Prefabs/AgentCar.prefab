@@ -294,7 +294,7 @@ WheelCollider:
   m_Center: {x: 0, y: 0, z: 0.15}
   m_Radius: 0.35
   m_SuspensionSpring:
-    spring: 4000
+    spring: 8000
     damper: 2000
     targetPosition: 0.5
   m_SuspensionDistance: 0
@@ -356,7 +356,7 @@ WheelCollider:
   m_Center: {x: 0, y: 0, z: 0.15}
   m_Radius: 0.35
   m_SuspensionSpring:
-    spring: 4000
+    spring: 8000
     damper: 2000
     targetPosition: 0.5
   m_SuspensionDistance: 0
@@ -418,7 +418,7 @@ WheelCollider:
   m_Center: {x: 0, y: 0, z: 0.15}
   m_Radius: 0.35
   m_SuspensionSpring:
-    spring: 4000
+    spring: 8000
     damper: 2000
     targetPosition: 0.5
   m_SuspensionDistance: 0
@@ -528,7 +528,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4621505406325583634}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.155, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -616,7 +616,7 @@ WheelCollider:
   m_Center: {x: 0, y: 0, z: 0.15}
   m_Radius: 0.35
   m_SuspensionSpring:
-    spring: 4000
+    spring: 8000
     damper: 2000
     targetPosition: 0.5
   m_SuspensionDistance: 0
@@ -739,7 +739,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6022860819220975647
 Transform:
   m_ObjectHideFlags: 0
@@ -764,13 +764,13 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6403644427213507237}
   serializedVersion: 2
-  m_Mass: 600
+  m_Mass: 350
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 64
   m_CollisionDetection: 0
 --- !u!65 &6403644427213507258
 BoxCollider:
@@ -784,7 +784,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1.5, y: 1, z: 3.89}
-  m_Center: {x: 0, y: 0.08, z: 0}
+  m_Center: {x: 0, y: 0.11, z: 0}
 --- !u!114 &6403644427213507256
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -792,7 +792,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6403644427213507237}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 46cd6658e6e3b0c4f9e07bb154b88a65, type: 3}
   m_Name: 
@@ -810,12 +810,14 @@ MonoBehaviour:
   - model: {fileID: 5294767732099139612}
     collider: {fileID: 4621505405737554475}
     axel: 1
-  _maxAcceleration: 50
+  _maxAcceleration: 18000
   _brakeAcceleration: 300
   _turnSensitivity: 0.8
-  _maxSteerAngle: 25
-  _boostTime: 2
-  _boostMultiplier: 100
+  _maxSteerAngle: 15
+  _onlyRotate: 0
+  _boostTime: 1
+  _boostMultiplier: 2
+  _armadillo: 0
 --- !u!114 &5963927027596291229
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -823,14 +825,18 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6403644427213507237}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6ce40e2ba8c81fb40a0a698ef7432267, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  availableWeaponsPrefab:
-  - {fileID: 1127116340744003378, guid: 6b00959a455d5b74f9050de2fdb8e2cb, type: 3}
-  equipedWeapon: {fileID: 0}
+  weapons: []
+  gunPoint: {fileID: 0}
+  missilePrefab: {fileID: 0}
+  barrelPoint: {fileID: 0}
+  barrelPrefab: {fileID: 0}
+  acidBulletPrefab: {fileID: 0}
+  turret: {fileID: 0}
 --- !u!1 &6687513698925204380
 GameObject:
   m_ObjectHideFlags: 0

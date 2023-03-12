@@ -195,7 +195,9 @@ public class CarController : MonoBehaviour
     {
         Debug.Log(gameObject.name+" applying boost force! total time = "+_currentBoostTimer);
         // FIXME: this seems to have no effect
-        _rb.AddForce(_rb.velocity.normalized * _boostMultiplier, ForceMode.Impulse);
+        // _rb.AddForce(_rb.velocity.normalized * _boostMultiplier, ForceMode.Impulse);
+        // changed to continuous 
+        _rb.AddForce(_rb.velocity.normalized * _boostMultiplier, ForceMode.VelocityChange);
     }
 
     public void OnWeaponPickup(string weaponName) {

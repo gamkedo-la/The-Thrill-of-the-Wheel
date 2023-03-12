@@ -48,13 +48,14 @@ GameObject:
   - component: {fileID: 1210623507216226830}
   - component: {fileID: 5448740780825577680}
   - component: {fileID: 2977325087463200563}
+  - component: {fileID: 1698650752}
   m_Layer: 0
   m_Name: ArmoredTruck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5759919486113858834
 Transform:
   m_ObjectHideFlags: 0
@@ -133,8 +134,8 @@ MonoBehaviour:
   _turnSensitivity: 10
   _maxSteerAngle: 25
   _onlyRotate: 1
-  _boostTime: 2
-  _boostMultiplier: 100
+  _boostTime: 1
+  _boostMultiplier: 2
   _armadillo: 0
 --- !u!114 &2977325087463200563
 MonoBehaviour:
@@ -153,6 +154,22 @@ MonoBehaviour:
   missilePrefab: {fileID: 1710269350940108839, guid: bf91982fb7320e4419f777c269dee8eb, type: 3}
   barrelPoint: {fileID: 7051473829716384629}
   barrelPrefab: {fileID: 6762575560747616861, guid: 75b6ac82371ae1f45808bdc3b6ae999d, type: 3}
+  acidBulletPrefab: {fileID: 0}
+  turret: {fileID: 0}
+--- !u!114 &1698650752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1090553965295086776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9158ebf2f4be0574f8837dcb82bf9f97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHealth: 100
+  _currentHealth: 80
 --- !u!1 &2580084577887312728
 GameObject:
   m_ObjectHideFlags: 0

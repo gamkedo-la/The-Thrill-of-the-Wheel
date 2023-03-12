@@ -244,7 +244,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &912438192900741892
 Transform:
   m_ObjectHideFlags: 0
@@ -291,16 +291,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _wheels:
-  - model: {fileID: 1811047143909212422}
+  - model: {fileID: 0}
     collider: {fileID: 4463556320537526188}
     axel: 0
-  - model: {fileID: 6598876925871493615}
+  - model: {fileID: 0}
     collider: {fileID: 4364801306101003911}
     axel: 0
-  - model: {fileID: 4247788413937628557}
+  - model: {fileID: 0}
     collider: {fileID: 9138927513780121476}
     axel: 1
-  - model: {fileID: 5512362284657499084}
+  - model: {fileID: 0}
     collider: {fileID: 2595176201987314088}
     axel: 1
   _maxAcceleration: 25000
@@ -308,7 +308,7 @@ MonoBehaviour:
   _turnSensitivity: 10
   _maxSteerAngle: 25
   _onlyRotate: 1
-  _boostTime: 2
+  _boostTime: 1
   _boostMultiplier: 2
   _armadillo: 0
 --- !u!114 &1215626516480999869
@@ -330,6 +330,8 @@ MonoBehaviour:
   missilePrefab: {fileID: 1707675418004871331}
   barrelPoint: {fileID: 0}
   barrelPrefab: {fileID: 0}
+  acidBulletPrefab: {fileID: 0}
+  turret: {fileID: 0}
 --- !u!1 &4653240838568539186
 GameObject:
   m_ObjectHideFlags: 0
@@ -5475,16 +5477,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b5649188b5dcb7944a239d0838463032, type: 3}
   m_PrefabInstance: {fileID: 1179156361435752666}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1811047143909212422 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -8539082459760498212, guid: b5649188b5dcb7944a239d0838463032, type: 3}
-  m_PrefabInstance: {fileID: 1179156361435752666}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &4247788413937628557 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3075423599260114263, guid: b5649188b5dcb7944a239d0838463032, type: 3}
-  m_PrefabInstance: {fileID: 1179156361435752666}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &5087791145038935432 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6252759218846784850, guid: b5649188b5dcb7944a239d0838463032, type: 3}
@@ -5510,16 +5502,6 @@ MonoBehaviour:
   boneColor: {r: 0, g: 0, b: 1, a: 0.5}
   m_Transforms:
   - {fileID: 8309589988458931314}
---- !u!1 &5512362284657499084 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6639128544486126358, guid: b5649188b5dcb7944a239d0838463032, type: 3}
-  m_PrefabInstance: {fileID: 1179156361435752666}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &6598876925871493615 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5462549605186189621, guid: b5649188b5dcb7944a239d0838463032, type: 3}
-  m_PrefabInstance: {fileID: 1179156361435752666}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8309589988458931314 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -2086102968574571352, guid: b5649188b5dcb7944a239d0838463032, type: 3}
