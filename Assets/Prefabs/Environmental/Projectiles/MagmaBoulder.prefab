@@ -127,3 +127,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce4ea1ae4b36d494ca4cfebb8a4b88cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  impactVFXPrefab: {fileID: 796357506439250897, guid: 6984c4ff4c19cb7438486f382b536a53, type: 3}
