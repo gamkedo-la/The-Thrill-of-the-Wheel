@@ -15,7 +15,7 @@ public class EndScreen : MonoBehaviour
     {
         string endState = PlayerPrefs.GetString("EndState");
         Debug.Log(endState);
-        if(endState == "Win") {
+        if(endState == "win") {
             winText.SetActive(true);
         } else {
             isLose = true;

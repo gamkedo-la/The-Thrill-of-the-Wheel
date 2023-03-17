@@ -19,10 +19,19 @@ public class HealthController : MonoBehaviour
             AudioManager.Instance.PlaySFX("Explosion");
             Instantiate(_deathPrefab, transform.position, Quaternion.identity);
             gameObject.SetActive(false);
+            Invoke("ToEndScreen", 2f);
         }
         if(gameObject.CompareTag("Player")) {
             float percentageChange = (float) change / _maxHealth;
             if (onHealthChange!=null) onHealthChange(percentageChange);
+        }
+    }
+
+    void ToEndScreen () {
+        if(gameObject.CompareTag("Player")){
+            GameManager.Instance.Lose();
+        } else {
+            GameManager.Instance.CheckWinCondition();
         }
     }
 }

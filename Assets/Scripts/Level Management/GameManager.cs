@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -98,28 +99,31 @@ public class GameManager : MonoBehaviour
         _camera.ChangeCameraTarget(cameraTarget ? cameraTarget.transform : carInstance.transform);
     }
 
-    void CheckWinCondition () {
-        foreach (GameObject structure in _structuresToProtect)
-        {
-            if(!structure.activeInHierarchy) return;
-        }
+    public void CheckWinCondition () {
+        // foreach (GameObject structure in _structuresToProtect)
+        // {
+        //     if(!structure.activeInHierarchy) return;
+        // }
         int numberOfenemies = _enemies.Length;
         int enemiesDefeated = 0;
         foreach (GameObject enemy in _enemies)
         {
-            if(enemy.activeInHierarchy) enemiesDefeated++;
+            if(!enemy.activeInHierarchy) enemiesDefeated++;
         }
+        Debug.Log(enemiesDefeated);
 
         if (enemiesDefeated != numberOfenemies) return;
+        PlayerPrefs.SetString("EndState", "win");
+        SceneManager.LoadScene("EndgameScreen");
 
-        int numberOfStructures = _structuresToDestroy.Length;
-        int structuresDestroyed = 0;
-        foreach (GameObject structure in _structuresToDestroy)
-        {
-            if(structure.activeInHierarchy) structuresDestroyed++;
-        }
+        // int numberOfStructures = _structuresToDestroy.Length;
+        // int structuresDestroyed = 0;
+        // foreach (GameObject structure in _structuresToDestroy)
+        // {
+        //     if(structure.activeInHierarchy) structuresDestroyed++;
+        // }
 
-        if(structuresDestroyed != numberOfStructures) return;
+        // if(structuresDestroyed != numberOfStructures) return;
 
         return; // replace with switch to next level
     }
@@ -135,6 +139,11 @@ public class GameManager : MonoBehaviour
         if(structuresProtected == numberOfStructures) return true;
 
         return false;
+    }
+
+    public void Lose() {
+        PlayerPrefs.SetString("EndState", "lose");
+        SceneManager.LoadScene("EndgameScreen");
     }
 
     public void RespawnCar(Transform stuckPosition) {
