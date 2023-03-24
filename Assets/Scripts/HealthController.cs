@@ -14,6 +14,7 @@ public class HealthController : MonoBehaviour
 
     public void ChangeLife(int change) {
         _currentHealth += change;
+        _currentHealth = _currentHealth > _maxHealth ? _maxHealth : _currentHealth;
         if(_currentHealth < 1) {
             AudioManager.Instance.PlaySFX("Explosion");
             Instantiate(_deathPrefab, transform.position, Quaternion.identity);

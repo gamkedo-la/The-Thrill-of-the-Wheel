@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private CameraFollow _camera;
     [SerializeField] private Transform _respawnPoints;
     [SerializeField] private WeaponUI inventoryUI;
+    [SerializeField] private UIHealthbar healthUI;
     public static GameManager _instance;
     public static GameManager Instance
     {
@@ -89,10 +90,11 @@ public class GameManager : MonoBehaviour
         }
         _player = selectedCarTransform;
         inventoryUI.SetWeaponInventory(selectedCarTransform.GetComponent<WeaponInventory>());
+        healthUI.SetHealthbar(selectedCarTransform.GetComponent<HealthController>());
 
         // Set selected car active.
         carInstance.SetActive(true);
-        
+
         // Set camera to follow CameraTarget transform. Fall back to car transform
         // if no component is found.
         var cameraTarget = carInstance.GetComponentInChildren<CameraTarget>();
