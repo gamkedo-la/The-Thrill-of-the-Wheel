@@ -19,6 +19,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Transform _respawnPoints;
     [SerializeField] private WeaponUI inventoryUI;
     [SerializeField] private UIHealthbar healthUI;
+    [SerializeField] private UIMinimapFollower minimapFollower;
+    [SerializeField] private UIMinimapFollower playerFollower;
+
     public static GameManager _instance;
     public static GameManager Instance
     {
@@ -91,6 +94,8 @@ public class GameManager : MonoBehaviour
         _player = selectedCarTransform;
         inventoryUI.SetWeaponInventory(selectedCarTransform.GetComponent<WeaponInventory>());
         healthUI.SetHealthbar(selectedCarTransform.GetComponent<HealthController>());
+        playerFollower.SetTarget(selectedCarTransform);
+        minimapFollower.SetTarget(selectedCarTransform);
 
         // Set selected car active.
         carInstance.SetActive(true);
