@@ -8,8 +8,10 @@ using UnityEngine.SceneManagement;
 
 public class TitleScreen : MonoBehaviour
 {
+    public string sceneNameToLoad = "CarSelection";
+
     void Update()
     {
-        InputSystem.onAnyButtonPress.CallOnce(ctrl => SceneManager.LoadScene("CarSelection"));
+        InputSystem.onAnyButtonPress.CallOnce(ctrl => SceneManager.LoadScene(sceneNameToLoad));
     }
 }
