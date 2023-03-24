@@ -61,7 +61,6 @@ public class Gun : MonoBehaviour
                 // Add damage logic here
                 if(hit.transform.CompareTag("Enemy") || hit.transform.CompareTag("Player")){
                     hit.transform.GetComponent<HealthController>().ChangeLife(-2);
-                    Debug.Log(hit.transform.name);
                 }
             }
         }

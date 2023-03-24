@@ -138,10 +138,10 @@ public class WeaponInventory : MonoBehaviour
             }
         } else {
             weapons[equipedWeaponIndex] = temp;
+            UpdateEquipedWeapon(equipedWeaponIndex);
         }
     }
 
-    
 
     void FireEquippedWeapon (InputAction.CallbackContext obj) {
         if(weapons.Count < 1) return;
