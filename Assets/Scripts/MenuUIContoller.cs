@@ -39,9 +39,14 @@ public class MenuUIContoller : MonoBehaviour
         _menuAction.Disable();
     }
 
-    private void ShowOrHideMenu()
+    public void ShowOrHideMenu()
     {
         ShowOrHideMenu(!canvas.isActiveAndEnabled);
+    }
+
+    public void QuitGame() {
+        Application.Quit();
+        Debug.Log("quitting... (won't work in editor)");
     }
 
     private void ShowOrHideMenu(bool isToShow)
@@ -49,6 +54,9 @@ public class MenuUIContoller : MonoBehaviour
         if (isToShow)
         {
             SetMenuToDefault();
+            Time.timeScale = 0.0f;
+        } else {
+            Time.timeScale = 1.0f;
         }
 
         canvas.enabled = isToShow;
