@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: 5_ArmoredTruck
   m_EditorClassIdentifier: 
   carName: Armored Truck
-  carDescription: '"Car Description Goes Here"'
+  carDescription: A well-rounded all star
   carPrice: 50000
-  speed: 90
-  acceleration: 95
+  speed: 80
+  acceleration: 80
   handling: 80
   carModel: {fileID: 1090553965295086776, guid: 3753c9003d20b8d45913becb20e43f6b, type: 3}

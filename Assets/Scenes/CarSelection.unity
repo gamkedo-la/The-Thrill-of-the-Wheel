@@ -981,7 +981,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &744462366
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1368,7 +1368,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scriptableObjects:
   - {fileID: 11400000, guid: d65d750dcc9a9b4428145f382c4f1754, type: 2}
-  - {fileID: 11400000, guid: d61cc36a86eb6834bb3dbc7cf4b2a6c9, type: 2}
   - {fileID: 11400000, guid: 0030975ba985797499f92f8da4f9faad, type: 2}
   - {fileID: 11400000, guid: 654cf3ce3482f3b498b5cf003eab2b04, type: 2}
   carDisplay: {fileID: 1490469626}
@@ -1642,7 +1641,7 @@ GameObject:
   - component: {fileID: 1137169888}
   - component: {fileID: 1137169887}
   m_Layer: 5
-  m_Name: Acceleration
+  m_Name: Health
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1702,7 +1701,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Acceleration
+  m_Text: Health
 --- !u!222 &1137169888
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2063,7 +2062,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1288035537
 RectTransform:
   m_ObjectHideFlags: 0

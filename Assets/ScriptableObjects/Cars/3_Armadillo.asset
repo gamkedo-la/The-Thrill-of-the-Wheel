@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: 3_Armadillo
   m_EditorClassIdentifier: 
   carName: Armadillo
-  carDescription: '"Car Description Goes Here"'
+  carDescription: Fast and deadly
   carPrice: 2000
-  speed: 50
-  acceleration: 50
+  speed: 100
+  acceleration: 60
   handling: 60
   carModel: {fileID: 3098622883722614244, guid: a1ab796b70a167741961eb71fbba3cc9, type: 3}
