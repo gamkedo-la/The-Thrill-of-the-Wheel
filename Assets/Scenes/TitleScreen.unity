@@ -221,6 +221,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneNameToLoad: CreditsScreen
+  loadingText: {fileID: 0}
 --- !u!1 &327912452
 GameObject:
   m_ObjectHideFlags: 0
@@ -355,23 +356,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Luis Monta\xF1a: Project lead, core gameplay, volcano terrain, main gun
-    and laser code, player control, missile model, homing missile, geothermal station
-    model, radar, boulder destruction, ocean, volcano effect, collectible crate,
-    weapon UI icons, dust devils, air blast, barrel explosion, cannonballs, enemy
-    car item pickup ability, toxic pool, cooldowns, damage system, acid weapon materials,
-    title menu, end screen\nArmando Navarrete: Enemy AI core, turret code, models
-    (tank boat, turret, barrels, trees, high caliber bullet, health pack), car selection
-    screen, lava texture and particles, health pack hookup, sounds (missiles, vehicle
-    explosions, barrel drop, sonic gun, turret)\nChrister \"McFunkypants\" Kaitila:
-    20 rock models with 3 textures, road rendering, camera adjustments, environment
-    decoration (telephone poles, grass, damaged road, guard rails, skybox), AI directional
-    sense, AI smoothing, AI waypoints support, boost bug fix\nPatrick J Thompson:
-    Armadillo vehicle model, visual effects (magma burst, engine jet, explosions),
-    armadillo implementation\nNeil Urwin: Boost pads, destroyable crates, smoke particles,
-    sonic blast attack\nIan Cherabier: Weapon switch, inventory, laser hookup\nTyler
-    Funk: Armored car model, camera behavior, gravel shader fix\nBar\u0131\u015F
-    K\xF6kl\xFC: Base menu UI\nH Trayford: Laser sound"
+  m_text: (Moved to credits scene!)
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
