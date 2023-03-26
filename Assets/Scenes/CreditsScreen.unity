@@ -371,8 +371,8 @@ MonoBehaviour:
     armadillo implementation\nNeil Urwin: Boost pads, destroyable crates, smoke particles,
     sonic blast attack\nIan Cherabier: Weapon switch, inventory, laser hookup\nTyler
     Funk: Armored car model, camera behavior, gravel shader fix\nBar\u0131\u015F
-    K\xF6kl\xFC: Base menu UI\nH Trayford: Laser sound\n\n-- PRESS ANY BUTTON OR
-    CLICK TO CONTINUE TO VEHICLE SELECTION --"
+    K\xF6kl\xFC: Base menu UI\nH Trayford: Laser sound\n\n-- PRESS BUTTON/CLICK TO
+    CONTINUE TO VEHICLE SELECTION (will take time to load) --"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -399,7 +399,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 19.55
+  m_fontSize: 19
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
