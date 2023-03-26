@@ -2944,6 +2944,10 @@ PrefabInstance:
       value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 4833027414668591131, guid: 644b311b17247e94cab5b6a3e9754cbf, type: 3}
+      propertyPath: musicSounds.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4833027414668591131, guid: 644b311b17247e94cab5b6a3e9754cbf, type: 3}
       propertyPath: sfxSounds.Array.data[1].clip
       value: 
       objectReference: {fileID: 8300000, guid: ec742d17c36af3a4499069ba013170da, type: 3}
